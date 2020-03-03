@@ -1,0 +1,4 @@
+[build]
+base = "hoa_estore/"
+publish = "hoa_estore/build/"
+command = "npm run build"
