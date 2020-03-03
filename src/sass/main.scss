@@ -1,8 +1,11 @@
 @import 'base/variables';
 @import 'base/base';
 @import 'base/typography';
-@import 'layouts/navigation';
-@import 'layouts/store';
+@import 'abstracts/functions';
+@import 'abstracts/animations';
+@import 'layout/navigations';
+@import 'layout/store';
+@import 'layout/footer';
 @import 'components/buttons';
 @import 'components/forms';
 @import 'components/card';
