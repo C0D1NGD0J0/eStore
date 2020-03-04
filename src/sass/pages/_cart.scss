@@ -2,6 +2,7 @@
 ===SHOPPING CART===
 ==================*/
 #cart-page {
+
   .cart-table th,
   .cart-table td {
     font-weight: 300;
@@ -102,6 +103,14 @@
 
           button {
             margin: .7rem 0;
+
+            i.fa-cc-mastercard {
+              color: #FF5F00;
+            }
+
+            i.fa-cc-paypal {
+              color: #3b7bbf;
+            }
           }
         }
       }

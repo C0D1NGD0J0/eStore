@@ -5,9 +5,9 @@ import OrderSummary from './OrderSummary';
 const Cart = (props) => {
   return (
     <ContentWrapper>
-      <div className="row">
-        <div className="sm-9 md-9 col">
-          <div className="cart animated fadeInLeft" id="cart-page">
+      <div className="row" id="cart-page">
+        <div className="sm-9 col">
+          <div className="cart animated fadeInLeft">
             <div className="page-title">
               <h2>Shopping Cart</h2>
             </div>
@@ -26,7 +26,7 @@ const Cart = (props) => {
                   <td><a href="#!"><img src="https://via.placeholder.com/150" alt=""/></a></td>
                     <td><a href="#!">Rolex Chrome 2000</a></td>
                     <td>$350.00</td>
-                    <td><input type="number" value="2" className="form-control p-qty"/></td>
+                    <td><input type="number"  defaultValue="2" className="form-control p-qty"/></td>
                     <td>$700.00</td>
                     <td><a href="#"><i className="fa fa-trash"></i></a></td>
                   </tr>
@@ -34,7 +34,7 @@ const Cart = (props) => {
                     <td><a href="#!"><img src="https://via.placeholder.com/150" alt=""/></a></td>
                     <td><a href="#!">Rolex Chrome 2000</a></td>
                     <td>$350.00</td>
-                    <td><input type="number" value="2" className="form-control p-qty"/></td>
+                    <td><input type="number" defaultValue="2" className="form-control p-qty"/></td>
                     <td>$700.00</td>
                     <td><a href="#"><i className="fa fa-trash"></i></a></td>
                   </tr>
@@ -42,7 +42,7 @@ const Cart = (props) => {
                     <td><a href="#!"><img src="https://via.placeholder.com/150" alt=""/></a></td>
                     <td><a href="#!">Rolex Chrome 2000</a></td>
                     <td>$350.00</td>
-                    <td><input type="number" value="2" className="form-control p-qty"/></td>
+                    <td><input type="number" defaultValue="2" className="form-control p-qty"/></td>
                     <td>$700.00</td>
                     <td><a href="#"><i className="fa fa-trash"></i></a></td>
                   </tr>
@@ -55,7 +55,7 @@ const Cart = (props) => {
         </div>
 
         <div className="sm-3 md-3 col">
-          <div className="cart-sidebar">
+          <div className="cart-sidebar animated fadeInRight">
             <OrderSummary />
           </div>
         </div>
