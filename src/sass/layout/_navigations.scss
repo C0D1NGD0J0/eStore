@@ -152,11 +152,200 @@
     }
   }
 
-  .sidebarVisible{
+  .sidebarVisible {
     left: 8rem;
   }
 
-  .sidebarHidden{
+  .sidebarHidden {
     left: -32rem;
+  }
+}
+
+.header {
+  min-width: 100%;
+  padding: 1rem 5% 0 5%;
+  background-color: $white-color;
+  box-shadow: 2px 6px 5px -1px rgba(0, 0, 0, 0.37);
+
+  &-navbar {
+    display: flex;
+    flex: 1 0 auto;
+    align-items: center;
+    justify-content: flex-end;
+
+    .nav-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      &__item {
+        padding: 0 2rem;
+        position: relative;
+        display: inline-block;
+        transition: all 0.3s ease-in-out;
+
+        .dropdown {
+          left: 0;
+          top: 3rem;
+          opacity: 0;
+          display: flex;
+          min-width: 100%;
+          position: absolute;
+          visibility: hidden;
+          flex-direction: column;
+          padding: 3rem 1rem 1rem 1rem;
+          background-color: $off-white-color;
+
+          &-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            &__item {
+              &::before {
+                content: "";
+              }
+
+              padding: 1rem 1rem .5rem 1rem;
+              border-bottom: 1px dotted #ddd;
+
+              &:last-child {
+                border-bottom: none;
+              }
+            }
+
+            &__item-link {
+              font-size: 1.3rem;
+              transition: font-weight 0.2s ease-in-out;
+              -webkit-transition: font-weight 0.2s ease-in-out;
+              -moz-transition: font-weight 0.2s ease-in-out;
+              -ms-transition: font-weight 0.2s ease-in-out;
+              -o-transition: font-weight 0.2s ease-in-out;
+
+              &:hover,
+              &:focus {
+                font-weight: 500;
+                transition: font-weight 0.2s ease-in-out;
+                -webkit-transition: font-weight 0.2s ease-in-out;
+                -moz-transition: font-weight 0.2s ease-in-out;
+                -ms-transition: font-weight 0.2s ease-in-out;
+                -o-transition: font-weight 0.2s ease-in-out;
+              }
+            }
+          }
+        }
+
+        &:hover .dropdown,
+        &:focus .dropdown {
+          opacity: 1;
+          visibility: visible;
+          transition: all 0.3s ease-in-out;
+          -webkit-transition: all 0.3s ease-in-out;
+          -moz-transition: all 0.3s ease-in-out;
+          -ms-transition: all 0.3s ease-in-out;
+          -o-transition: all 0.3s ease-in-out;
+        }
+      }
+
+      &__link {
+        font-size: 1.2rem;
+        font-weight: normal;
+        color: $dark-brown-color2;
+        transition: all 0.5s ease-in-out;
+
+        &::after {
+          content: '';
+          width: 0;
+          display: block;
+          height: .3rem;
+          background-color: $gold-color;
+        }
+
+        &:hover::after {
+          width: 60%;
+          margin: auto;
+          transition: width 0.5s ease-in-out;
+        }
+
+        i {
+          color: $grey-color;
+        }
+
+        &:hover i {
+          color: $gold-color;
+        }
+      }
+    }
+  }
+
+  &-search {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  &-menu {
+    width: 100%;
+    border-top: .1rem solid #ddd;
+    border-bottom: .1rem solid #ddd;
+    transition: display 0.5s ease-in-out;
+
+    .menu-list {
+      display: flex;
+      flex: 1 0 auto;
+      list-style: none;
+      align-items: center;
+      justify-content: space-evenly;
+
+      &__link {
+        font-size: 1.2rem;
+        font-weight: normal;
+        color: $dark-brown-color2;
+        transition: all 0.5s ease-in-out;
+
+        &::after {
+          content: '';
+          width: 0;
+          display: block;
+          height: .3rem;
+          background-color: $gold-color;
+        }
+
+        &:hover::after {
+          width: 60%;
+          margin: auto;
+          transition: width 0.5s ease-in-out;
+        }
+      }
+    }
+  }
+
+  &.sticky {
+    position: fixed;
+    overflow: hidden;
+    transition: display 0.5s ease-in-out;
+    z-index: 1;
+  }
+
+  .search-form {
+    display: flex;
+    padding: 1rem 0;
+    align-items: center;
+    justify-content: flex-end;
+
+    input {
+      width: 30%;
+      border: none;
+      outline: none;
+      font-size: 1.6rem;
+      padding: .3rem .4rem;
+      display: inline-block;
+      border-bottom: 1px solid #eee;
+    }
+
+    button {
+      border-radius: 50%;
+      background-color: transparent;
+      border: .04rem solid $dark-brown-color;
+    }
   }
 }

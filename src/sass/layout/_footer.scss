@@ -1,0 +1,46 @@
+.footer {
+  width: 100%;
+  padding: 5rem;
+  flex-shrink: 0;
+  margin-top: 3rem;
+  color: $dark-brown-color;
+  background-color: $off-white-color;
+
+  &-sections {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-section h5 {
+    width: 70%;
+    font-weight: bold;
+    font-size: 1.4rem;
+    letter-spacing: .1rem;
+    text-transform: none;
+  }
+
+  &-section-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    &__item {
+      padding: .7rem .7rem 0 0;
+
+      a {
+        font-size: 1.2rem;
+        font-weight: 400;
+        transition: color .3s ease-in-out;
+
+        &:hover,
+        &:focus {
+          color: $grey-color;
+          transition: color .3s ease-in-out;
+        }
+      }
+    }
+  }
+}

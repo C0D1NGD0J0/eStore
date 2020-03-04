@@ -1,0 +1,160 @@
+.btn {
+  outline: none;
+  display: inline-block;
+  //padding: 0.45rem 1.7rem;
+  border-radius: 12rem;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 300;
+  color: #FFFFFF;
+  text-align: center;
+  text-transform: uppercase;
+  border: 0.1rem solid #FFFFFF;
+  transition: all 0.4s ease-in-out;
+  
+  &-lg {
+    padding: 1rem 4rem;
+  }
+
+  &-danger {
+    font-size: 1.4rem;
+    color: $off-white-color;
+    background-color: #ff0000;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover,
+    &:focus {
+      background-color: #6b0707;
+      box-shadow: 0 .1rem 2rem 0 rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease-in-out;
+    }
+  }
+
+  &-gold {
+    border-color: $gold-color;
+    transition: all 0.4s ease-in-out;
+
+    &:hover,
+    &:focus {
+      border: transparent;
+      color: $white-color;
+      background-color: $gold-color;
+      transition: all 0.4s ease-in-out;
+    }
+  }
+
+  &-regular {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: $dark-brown-color;
+    border: .1rem solid $black-color;
+    background-color: $off-white-color;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover,
+    &:focus {
+      background-color: $off-white-color2;
+      box-shadow: 0 .1rem 2rem 0 rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease-in-out;
+    }
+  }
+
+  &-pagination {
+    font-size: 1.4rem;
+    font-family: inherit;
+    color: $dark-brown-color;
+    border: 1px solid $dark-brown-color2;
+
+    &:hover,
+    &:active,
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.btn-link {
+  border: none;
+  font-size: 1.4rem;
+  color: $black-color;
+
+  &::after {
+    content: '';
+    width: 0;
+    display: block;
+    height: .3rem;
+    background-color: $gold-color;
+  }
+
+  &:hover::after {
+    width: 60%;
+    margin: auto;
+    transition: width 0.5s ease-in-out;
+  }
+}
+
+.btn-circle {
+  padding: 1.2rem;
+  border-radius: 50%;
+  transition: color .3s ease-in-out;
+  border: 1px solid $dark-brown-color;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  -webkit-transition: color .3s ease-in-out;
+  -moz-transition: color .3s ease-in-out;
+  -ms-transition: color .3s ease-in-out;
+  -o-transition: color .3s ease-in-out;
+
+  i {
+    color: $dark-brown-color;
+  }
+
+  &:hover i,
+  &:focus i {
+    color: $gold-color;
+    transition: color .3s ease-in-out;
+    -webkit-transition: color .3s ease-in-out;
+    -moz-transition: color .3s ease-in-out;
+    -ms-transition: color .3s ease-in-out;
+    -o-transition: color .3s ease-in-out;
+  }
+}
+
+.btn-checkout {
+  width: 100%;
+  border-radius: 0;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: $black-color;
+  padding: 1.4rem 2rem;
+  background-color: $off-white-color2;
+
+  i {
+    font-size: 2rem;
+  }
+
+  &:last-child {
+    margin-bottom: 1rem;
+  }
+}
+
+.btn-toggle {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 1rem 5rem;
+  position: relative;
+  border-radius: inherit;
+  background: transparent;
+
+  &:active {
+    outline: none;
+  }
+
+  &.active {
+    color: $off-white-color2;
+    background-color: $dark-brown-color;
+  }
+}

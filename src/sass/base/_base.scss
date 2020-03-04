@@ -44,7 +44,9 @@ ul {
 
 main {
   width: calc(100% - 8rem);
+  flex-direction: column;
   margin-left: 8rem;
+  display: flex;
   height: 100%;
 }
 

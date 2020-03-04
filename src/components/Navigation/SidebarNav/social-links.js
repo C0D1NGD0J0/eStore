@@ -6,9 +6,9 @@ const links = [
   { href: "#!", faIcon: "fab fa-facebook-f" },
 ]
 const SidebarSocialLinks = (props) => {
-  const _li = links.map((item) => {
+  const _li = links.map((item, idx) => {
     return (
-      <li>
+      <li key={idx}>
         <a href={item.href} className="social-links__item">
           <i className={item.faIcon}></i>
         </a>
