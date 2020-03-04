@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 const Collection = (props) => {
   return (
@@ -7,7 +8,7 @@ const Collection = (props) => {
         <div className="product-card__top">
           <img src="https://via.placeholder.com/150" alt="" />
           <div className="product-card__overlay">
-            <button><a href="product.html"><i className="fa fa-eye"></i></a></button>
+            <button><Link to="/products/1"><i className="fa fa-eye"></i></Link></button>
             <button><i className="fa fa-heart-o"></i></button>
             <button><i className="fa fa-shopping-cart"></i></button>
           </div>
