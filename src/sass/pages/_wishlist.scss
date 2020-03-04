@@ -1,0 +1,17 @@
+.wishlist {
+  display: flex;
+  padding: 0 2rem;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-title {
+  width: 100%;
+  padding: 2rem 0;
+  text-align: center;
+
+  hr {
+    margin: 0 auto;
+  }
+}

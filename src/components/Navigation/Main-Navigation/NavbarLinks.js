@@ -15,7 +15,7 @@ const NavbarLinks = (props) => {
             <i className="fas fa-user"></i> Register/Login
           </Link>
         </li>
-        <li className="nav-list__item">
+        <li className="nav-list__item animate-border">
           <Link to="/cart" className="nav-list__link">
             <i className="fas fa-shopping-cart"></i> Cart (2)
           </Link>

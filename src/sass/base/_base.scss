@@ -89,8 +89,14 @@ button {
   }
 }
 
+input {
+  border-bottom-left-radius: 0 0;
+  border-bottom-right-radius: 0 0;
+  border-top-left-radius: 0 0;
+  border-top-right-radius: 0 0;
+}
+
 table td,
 table th {
   font-weight: 400;
-  font-family: 'Nunito', sans-serif;
 }

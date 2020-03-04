@@ -1,0 +1,19 @@
+.animate-border {
+  border: 4px solid transparent;
+  animation: borderNotification 2s infinite;
+  -webkit-animation: borderNotification 2s infinite;
+}
+
+@keyframes borderNotification {
+  0% {
+    border: 2px solid rgba($gold-color, 1);
+  }
+
+  50% {
+    border: 2px solid rgba($gold-color, 0);
+  }
+
+  100% {
+    border: 2px solid rgba($gold-color, 1);
+  }
+}

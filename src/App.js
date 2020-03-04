@@ -7,6 +7,8 @@ import Footer from "./components/Navigation/Footer";
 import LandingPage from "./pages/Home/";
 import SingleProduct from "./pages/Product/";
 import Store from "./pages/Store/";
+import WishList from "./pages/Wishlist";
+import Cart from "./pages/Cart/";
 import './sass/main.scss';
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/store" component={Store} />
           <Route exact path="/products/:1" component={SingleProduct} />
+          <Route exact path="/wishlist" component={WishList} />
+          <Route exact path="/cart" component={Cart} />
         </Switch>
         <Footer />
       </main>
