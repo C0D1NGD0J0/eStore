@@ -61,8 +61,10 @@ img {
 }
 
 .content-wrapper {
-  min-height: 100%;
-  padding: 3rem;
+  height: 100%;
+  width: 100%;
+  flex: 1 0 auto;
+  padding: 4rem;
 }
 
 hr::after {

@@ -1,25 +1,26 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
-const SidebarMenuLinks = () => {
+const SidebarMenuLinks = (props) => {
   return (
     <ul className="navbar__list">
       <li className="navbar__list-item">
-        <a href="index.html" className="navbar__list-item__link">Home</a>
+        <Link to="/" className="navbar__list-item__link">Home</Link>
       </li>
       <li className="navbar__list-item">
         <a href="!#" className="navbar__list-item__link">About Us</a>
       </li>
       <li className="navbar__list-item">
-        <a href="store.html" className="navbar__list-item__link">Store</a>
+        <Link to="/store" className="navbar__list-item__link">Store</Link>
       </li>
       <li className="navbar__list-item">
-        <a href="wishlist.html" className="navbar__list-item__link">Wishlist</a>
+        <Link to="/wishlist" className="navbar__list-item__link">Wishlist</Link>
       </li>
       <li className="navbar__list-item">
-        <a href="account.html" className="navbar__list-item__link">Account</a>
+        <Link to="/auth" className="navbar__list-item__link">Account</Link>
       </li>
       <li className="navbar__list-item">
-        <a href="cart.html" className="navbar__list-item__link">Cart</a>
+        <Link to="/cart" className="navbar__list-item__link">Cart</Link>
       </li>
     </ul>
   );

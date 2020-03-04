@@ -2,8 +2,8 @@ import React from 'react';
 
 const ContentWrapper = (props) => {
   return (
-    <div>
-      
+    <div className="content-wrapper">
+      {props.children}
     </div>
   );
 }
