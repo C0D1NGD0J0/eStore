@@ -18,7 +18,7 @@ class Store extends Component {
 
           <div className="sm-9 col">
             <div className="products-content">
-              <StoreHeader />
+              <StoreHeader title="Headphones"/>
 
               <ProductCollection products={[]}/>
 

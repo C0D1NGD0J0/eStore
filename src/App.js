@@ -9,6 +9,9 @@ import SingleProduct from "./pages/Product/";
 import Store from "./pages/Store/";
 import WishList from "./pages/Wishlist";
 import Cart from "./pages/Cart/";
+import UserAccount from "./containers/User";
+import UserAccountSetting from "./containers/User/AccountSettings/";
+import UserWishList from "./containers/User/Wishlist/";
 import Auth from "./pages/Auth/";
 import './sass/main.scss';
 
@@ -21,10 +24,14 @@ function App() {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/store" component={Store} />
-          <Route exact path="/products/:1" component={SingleProduct} />
+          <Route exact path="/products/:productId" component={SingleProduct} />
           <Route exact path="/wishlist" component={WishList} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/auth" component={Auth} />
+          <Route exact path="/myaccount" component={UserAccount} />
+          <Route exact path="/myaccount/settings" component={UserAccountSetting} />
+          <Route exact path="/myaccount/wishlist" component={UserWishList} />
+          <Route exact path="/myaccount/orders/:orderId" component={UserAccount} />
         </Switch>
         <Footer />
       </main>

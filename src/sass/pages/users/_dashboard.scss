@@ -1,0 +1,39 @@
+#userAccount-page {
+
+  .account-nav {
+    li {
+      a {
+        font-size: 1.2rem;
+        transition: all .2s ease-in-out;
+      }
+
+      &:hover a,
+      &:focus a {
+        font-weight: 400;
+        color: $dark-brown-color2;
+        transition: all .2s ease-in-out;
+      }
+    }
+  }
+
+  .account-myOrders {
+    width: 100%;
+
+    &__header {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .account-settings {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    &__info,
+    &__password {
+      width: 50%;
+      padding: 0 2rem;
+    }
+  }
+}
