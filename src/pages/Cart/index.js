@@ -1,6 +1,8 @@
 import React from 'react';
 import ContentWrapper from "../../components/Layouts/ContentWrapper";
 import OrderSummary from './OrderSummary';
+import ShoppingCart from "../../components/FormElements/ProductTable";
+import {Link} from "react-router-dom";
 
 const Cart = (props) => {
   return (
@@ -11,45 +13,9 @@ const Cart = (props) => {
             <div className="page-title">
               <h2>Shopping Cart</h2>
             </div>
-            <table className="cart-table">
-              <thead>
-                <tr>
-                  <th colSpan="2">Product</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Total Price</th>
-                  <th colSpan="2"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><a href="#!"><img src="https://via.placeholder.com/150" alt=""/></a></td>
-                    <td><a href="#!">Rolex Chrome 2000</a></td>
-                    <td>$350.00</td>
-                    <td><input type="number"  defaultValue="2" className="form-control p-qty"/></td>
-                    <td>$700.00</td>
-                    <td><a href="#"><i className="fa fa-trash"></i></a></td>
-                  </tr>
-                  <tr>
-                    <td><a href="#!"><img src="https://via.placeholder.com/150" alt=""/></a></td>
-                    <td><a href="#!">Rolex Chrome 2000</a></td>
-                    <td>$350.00</td>
-                    <td><input type="number" defaultValue="2" className="form-control p-qty"/></td>
-                    <td>$700.00</td>
-                    <td><a href="#"><i className="fa fa-trash"></i></a></td>
-                  </tr>
-                  <tr>
-                    <td><a href="#!"><img src="https://via.placeholder.com/150" alt=""/></a></td>
-                    <td><a href="#!">Rolex Chrome 2000</a></td>
-                    <td>$350.00</td>
-                    <td><input type="number" defaultValue="2" className="form-control p-qty"/></td>
-                    <td>$700.00</td>
-                    <td><a href="#"><i className="fa fa-trash"></i></a></td>
-                  </tr>
-              </tbody>
-            </table>
+            <ShoppingCart />
             <div className="back-btn" style={{marginTop: "4rem"}}>
-              <a href="store.html" className="btn btn-regular">Back to Shopping</a>
+              <Link to="/store" className="btn btn-regular">Back to Shopping</Link>
             </div>
           </div>
         </div>

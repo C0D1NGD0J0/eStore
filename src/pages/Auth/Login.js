@@ -14,6 +14,7 @@ const Login = (props) => {
         </div>
         <div className="form-group">
           <input type="text" className="form__input" name="email" placeholder="Enter email" />
+          <small className="text-danger">this is where errors are going to be shown</small>
         </div>
         <div className="form-group">
           <input type="password" name="password" className="form__input" placeholder="Enter Password" />
@@ -21,7 +22,7 @@ const Login = (props) => {
         <div className="form-group">
           <label for="sdf" style={{ verticalAlign: "top" }}>
             <input type="checkbox" name="remember-me" id="sdf" className="form__checkbox" /> Remember Password
-                   </label>
+          </label>
         </div>
 
         <div className="form-group">

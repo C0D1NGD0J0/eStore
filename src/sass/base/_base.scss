@@ -97,6 +97,9 @@ input {
 }
 
 table td,
-table th {
-  font-weight: 400;
+table th,
+table a {
+  font-size: 1.3rem;
+  font-weight: 300;
+  font-family: 'Spartan', sans-serif !important;
 }
