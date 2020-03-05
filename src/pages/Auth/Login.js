@@ -1,8 +1,12 @@
 import React from 'react';
 
 const Login = (props) => {
+  const isVisible = {
+    display: `${props.show ? 'flex' : 'none'}`
+  };
+
   return (
-    <div id="login" className="auth-page__content wow bounceInUp" style={{ display: "none" }}>
+    <div id="login" className={`auth-page__content ${props.show ? 'animated fadeIn slow' : ''}`} style={isVisible}>
       <div className="auth-page__content-img"></div>
       <form className="form">
         <div className="form-group">

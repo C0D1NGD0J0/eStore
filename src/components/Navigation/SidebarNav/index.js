@@ -4,8 +4,8 @@ import SocialLinks from "./social-links";
 
 const SideNavbar = (props) => {
   const [isSidebarOpen, updateSidebar] = useState(false);
-
-  const toggleSidebar = () =>{
+  
+  const toggleSidebar = () => {
     updateSidebar(!isSidebarOpen);
   };
 

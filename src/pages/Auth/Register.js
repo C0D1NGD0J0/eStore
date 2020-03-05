@@ -1,8 +1,14 @@
 import React from 'react';
 
 const Register = (props) => {
+  const isVisible = {
+    display: `${props.show ? 'flex' : 'none'}`
+  };
+
+  const cssClass = `auth-page__content ${props.show ? 'animated fadeIn slow' : ''}`;
+
   return (
-    <div id="register" className="auth-page__content wow bounceInDown">
+    <div id="register" className={cssClass} style={isVisible}>
       <form className="form">
         <div className="form-group">
           <h3>Register</h3>

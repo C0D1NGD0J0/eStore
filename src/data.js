@@ -189,3 +189,21 @@ const watchData4 = [
     brand: ""
   },
 ];
+
+
+
+
+
+
+//useEffect(() => {
+//  document.getElementsByTagName('html')[0].addEventListener('click', (e) => {
+//    //if (e.target.classList.contains("navbar sidebarVisible")){
+
+//    //}
+//  })
+
+//  //add click event to the window
+//  //check the class name attached to the event when it is triggered
+//  //now if that classname is not among the classnames in your sidebar
+//  //you trigger the action to close the sidebar
+//}, []);
