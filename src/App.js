@@ -9,6 +9,7 @@ import SingleProduct from "./pages/Product/";
 import Store from "./pages/Store/";
 import WishList from "./pages/Wishlist";
 import Cart from "./pages/Cart/";
+import Auth from "./pages/Auth/";
 import './sass/main.scss';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/products/:1" component={SingleProduct} />
           <Route exact path="/wishlist" component={WishList} />
           <Route exact path="/cart" component={Cart} />
+          <Route exact path="/auth" component={Auth} />
         </Switch>
         <Footer />
       </main>
