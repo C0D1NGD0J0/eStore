@@ -12,6 +12,7 @@ import Cart from "./pages/Cart/";
 import UserAccount from "./containers/User";
 import UserAccountSetting from "./containers/User/AccountSettings/";
 import UserWishList from "./containers/User/Wishlist/";
+import UserOrder from "./containers/User/UserOrder";
 import Auth from "./pages/Auth/";
 import './sass/main.scss';
 
@@ -31,7 +32,7 @@ function App() {
           <Route exact path="/myaccount" component={UserAccount} />
           <Route exact path="/myaccount/settings" component={UserAccountSetting} />
           <Route exact path="/myaccount/wishlist" component={UserWishList} />
-          <Route exact path="/myaccount/orders/:orderId" component={UserAccount} />
+          <Route exact path="/myaccount/orders/:orderId" component={UserOrder} />
         </Switch>
         <Footer />
       </main>
