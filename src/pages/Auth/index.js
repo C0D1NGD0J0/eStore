@@ -1,6 +1,8 @@
 import React from 'react';
 import ContentWrapper from "../../components/Layouts/ContentWrapper";
 import AuthHeader from './authHeader';
+import Login from "./Login";
+import Register from "./Register";
 
 const Auth = (props) => {
   return (
