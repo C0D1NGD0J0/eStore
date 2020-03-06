@@ -1,19 +1,24 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 const Card = (props) => {
+  const { item } = props;
+
   return (
     <div className="product-card wow zoomIn">
       <div className="product-card__top">
-        <img src="https://via.placeholder.com/150" alt="" />
+        <div className="product-card__img">
+          <img src={item.imgUrl} alt={item.name} />
+        </div>
         <div className="product-card__overlay">
-          <button><a href="product.html"><i className="fa fa-eye"></i></a></button>
+          <button><Link to={`/products/${item.id}`}><i className="fa fa-eye"></i></Link></button>
           <button><i className="fa fa-heart-o"></i></button>
           <button><i className="fa fa-shopping-cart"></i></button>
         </div>
       </div>
       <div className="product-card__bottom">
-        <h3>Bose 700S</h3>
-        <h4>$500.00</h4>
+        <h3>{item.name}</h3>
+        <h4>${item.price}</h4>
       </div>
     </div>
   );

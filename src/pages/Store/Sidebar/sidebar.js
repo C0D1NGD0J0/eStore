@@ -46,7 +46,7 @@ const StoreSidebar = (props) => {
         <hr width="10%" />
         <ul className="category-list">
           <li>
-            <label for="bose">Bose</label>
+            <label htmlFor="bose">Bose</label>
             <input type="checkbox" className="form-input__checkbox" id="bose" />
           </li>
           <li>

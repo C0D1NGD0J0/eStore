@@ -4,9 +4,19 @@ import ContentWrapper from "../../components/Layouts/ContentWrapper";
 import StoreHeader from './StoreHeader';
 import ProductCollection from "../../components/Collection";
 import Pagination from '../../components/Pagination';
+import { static_data } from "../../data";
 
 class Store extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      PRODUCTS: static_data
+    };
+  }
+
   render() {
+    const { PRODUCTS  } = this.state;
+    
     return (
       <ContentWrapper>
         <div className="row">
@@ -19,9 +29,11 @@ class Store extends Component {
           <div className="sm-9 col">
             <div className="products-content">
               <StoreHeader title="Headphones"/>
-
-              <ProductCollection products={[]}/>
-
+              {
+                PRODUCTS.map(({products}, idx) =>{
+                  return <ProductCollection key={idx} products={products}/>
+                })
+              }
               <Pagination />
             </div>
           </div>

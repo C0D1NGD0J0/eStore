@@ -1,4 +1,4 @@
-export const data = [
+export const static_data = [
   {
     category: "Headphones",
     imgUrl: "https://assets.bose.com/content/dam/Bose_DAM/Web/consumer_electronics/global/products/headphones/soundlink_around-ear_wireless_headphones_II/product_silo_images/sl_ae_II_black_EC_hero.psd/jcr:content/renditions/cq5dam.web.1000.1000.png",
@@ -214,7 +214,7 @@ export const categories = [
 
 export const featured = () =>{
   let result = [];
-  data.map((obj) =>{
+  static_data.map((obj) =>{
     result.push(obj.products);
   });
 
