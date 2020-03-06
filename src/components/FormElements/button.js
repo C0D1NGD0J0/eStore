@@ -1,9 +1,9 @@
 import React from 'react';
 
-const CustomButton = ({ children, classes, type }) => {
+const CustomButton = ({ children, classes, type, disabled }) => {
   
   return (
-    <button type={type} className={`${classes}`}>
+    <button type={type} className={`${classes}`} disabled={disabled.toString()}>
       {children}
     </button>
   );

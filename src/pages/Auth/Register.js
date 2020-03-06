@@ -1,31 +1,32 @@
-import React, {useState} from 'react';
+import React from 'react';
 import{ Link } from "react-router-dom";
+import useAuthForm from "../../utils/useForm";
 import InputField from "../../components/FormElements/inputField";
 import Button from "../../components/FormElements/button";
+
+const inputFields = {
+  inputs: {
+    firstName: { value: "", isValid: false },
+    lastName: { value: "", isValid: false },
+    email: { value: "", isValid: false },
+    password: { value: "", isValid: false },
+    password2: { value: "", isValid: false },
+  },
+  isFormValid: false,
+};
 
 const Register = (props) => {
   const isVisible = {display: `${props.show ? 'flex' : 'none'}`};
   const cssClass = `auth-page__content ${props.show ? 'animated fadeIn slow' : ''}`;
 
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    password2: ""
-  });
-  
-  const { firstName, lastName, email, password, password2 } = formData;
-  
-  const handleChange = (evt) =>{
-    const { value, name } = evt.target;
-
-    setFormData({...formData, [name]: value });
-  };
+  const [formData, handleChange] = useAuthForm(inputFields);
 
   const handleSubmit = (evt) =>{
     evt.preventDefault();
+    console.log(formData);
   };
+
+  const { inputs: {firstName, lastName, email, password, password2}, isFormValid } = formData;
 
   return (
     <div id="register" className={cssClass} style={isVisible}>
@@ -35,7 +36,7 @@ const Register = (props) => {
             <h3>Register</h3>
           </div>
           <InputField 
-            value={firstName}
+            value={firstName.value}
             placeholder="First Name"
             name="firstName"
             handlechange={handleChange}
@@ -43,7 +44,7 @@ const Register = (props) => {
           />
 
           <InputField
-            value={lastName}
+            value={lastName.value}
             placeholder="Last Name"
             name="lastName"
             handlechange={handleChange}
@@ -51,7 +52,7 @@ const Register = (props) => {
           />
 
           <InputField
-            value={email}
+            value={email.value}
             placeholder="Enter Email"
             name="email"
             handlechange={handleChange}
@@ -59,23 +60,25 @@ const Register = (props) => {
           />
           
           <InputField
-            value={password}
+            value={password.value}
             placeholder="Enter Password"
             name="password"
             handlechange={handleChange}
             error=""
+            type="password"
           />
           
           <InputField
-            value={password2}
+            value={password2.value}
             placeholder="Confirm Password"
             name="password2"
             handlechange={handleChange}
             error=""
+            type="password"
           />
 
           <div className="form-group">
-            <Button classes="btn-regular btn-lg">Register</Button>
+            <Button classes="btn-regular btn-lg" disabled={isFormValid}>Register</Button>
           </div>
         </form>
       </div>
