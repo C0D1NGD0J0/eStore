@@ -26,10 +26,54 @@
       flex-wrap: wrap;
       align-items: flex-start;
 
-      form {
+      .wrapper {
         width: 50%;
         height: 100%;
-        background-color: $off-white-color;
+        display: flex;
+        overflow-y: scroll;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+
+        form {
+          width: 100%;
+        }
+
+        .orDivider {
+          width: 50%;
+          display: flex;
+          margin: 0 auto;
+          font-size: 1.4rem;
+          align-items: center;
+          margin-bottom: 1.5rem;
+          text-transform: uppercase;
+
+          hr {
+            flex: auto;
+            height: 2px;
+            border: none;
+            margin-bottom: 1rem;
+            background: $dark-brown-color;
+          }
+
+          span {
+            padding: 0 0.8rem;
+            color: $dark-brown-color;
+          }
+        }
+
+        .social-auth-links {
+          display: flex;
+           a {
+            display: block;
+            color: inherit;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+          }
+        }
       }
 
       &-img {

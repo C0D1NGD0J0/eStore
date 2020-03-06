@@ -30,7 +30,7 @@ const Auth = (props) => {
   });
 
   const handleToggleClick = (authType) =>{
-    dispatch({ type: authType});
+    dispatch({ type: authType });
   };
 
   return (

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const Collection = (props) => {
   const { products } = props;
+  if(!products) return null;
 
   return (
     <div className="products-content__row">

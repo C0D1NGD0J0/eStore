@@ -1,7 +1,7 @@
 import React from 'react';
 
 const InputField = (props) => {
-  const { type, value, placeholder, name, on_change, error, isRequired } = props;
+  const { type, value, placeholder, name, handlechange, error, isRequired } = props;
 
   return (
     <div className="form-group">
@@ -10,7 +10,7 @@ const InputField = (props) => {
         value={value}
         className="form__input" 
         name={name}
-        onChange={on_change}
+        onChange={handlechange}
         placeholder={placeholder}
         required={isRequired}
       />
@@ -22,7 +22,8 @@ const InputField = (props) => {
 InputField.displayName = 'InputField';
 
 InputField.defaultProps = {
-  type: "text"
+  type: "text",
+  isRequired: true
 };
 
 export default InputField;

@@ -8,7 +8,8 @@ const Login = (props) => {
   return (
     <div id="login" className={`auth-page__content ${props.show ? 'animated fadeIn slow' : ''}`} style={isVisible}>
       <div className="auth-page__content-img"></div>
-      <form className="form">
+      <div className="wrapper">
+        <form className="form">
         <div className="form-group">
           <h3>Sign in</h3>
         </div>
@@ -29,6 +30,7 @@ const Login = (props) => {
           <button type="submit" className="btn-gold btn-lg">Login</button>
         </div>
       </form>
+      </div>
     </div>
   );
 }

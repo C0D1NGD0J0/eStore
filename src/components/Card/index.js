@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Card = (props) => {
   const { item } = props;
-
+  
   return (
     <div className="product-card wow zoomIn">
       <div className="product-card__top">
