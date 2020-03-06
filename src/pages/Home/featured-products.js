@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactWOW from 'react-wow';
+import FeaturedProductCard from "../../components/Card/MenuCard";
 
 const FeaturedProducts = (props) => {
+  const { featuredProducts } = props;
+  let animation = "";
+  
   return (
     <section className="featured" id="featured-products">
       <div className="featured-content">
@@ -10,50 +14,13 @@ const FeaturedProducts = (props) => {
             <h2>The best of new in</h2>
           </div>
         </ReactWOW>
+
         <div className="content-card-list">
-          <div className="content-card wow fadeInLeft">
-            <div className="content-card__img">
-              <a href="!#">
-                <img src="https://via.placeholder.com/150" alt="" />
-              </a>
-            </div>
-            <div className="content-card__title">
-              <a href="!#" className="btn btn-link">Product One Name</a>
-            </div>
-          </div>
-
-          <div className="content-card wow fadeInLeft">
-            <div className="content-card__img">
-              <a href="!#">
-                <img src="https://via.placeholder.com/150" alt="" />
-              </a>
-            </div>
-            <div className="content-card__title">
-              <a href="!#" className="btn btn-link">Product One Name</a>
-            </div>
-          </div>
-
-          <div className="content-card wow fadeInRight">
-            <div className="content-card__img">
-              <a href="!#">
-                <img src="https://via.placeholder.com/150" alt="" />
-              </a>
-            </div>
-            <div className="content-card__title">
-              <a href="!#" className="btn btn-link">Product One Name</a>
-            </div>
-          </div>
-
-          <div className="content-card wow fadeInRight">
-            <div className="content-card__img">
-              <a href="!#">
-                <img src="https://via.placeholder.com/150" alt="" />
-              </a>
-            </div>
-            <div className="content-card__title">
-              <a href="!#" className="btn btn-link">Product One Name</a>
-            </div>
-          </div>
+          {
+            featuredProducts.map((product,idx) =>{
+              return <FeaturedProductCard animationClass="zoomIn" product={product} key={idx}/>
+            })
+          }
         </div>
       </div>
     </section>
