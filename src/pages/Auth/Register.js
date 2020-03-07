@@ -78,7 +78,7 @@ const Register = (props) => {
           />
 
           <div className="form-group">
-            <Button classes="btn-regular btn-lg" disabled={isFormValid}>Register</Button>
+            <Button classes="btn-regular btn-lg" disabled={!isFormValid}>Register</Button>
           </div>
         </form>
       </div>

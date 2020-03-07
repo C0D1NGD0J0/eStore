@@ -3,16 +3,10 @@ import NavLinks from "./menu-links";
 import SocialLinks from "./social-links";
 
 const SideNavbar = (props) => {
-  const [isSidebarOpen, updateSidebar] = useState(false);
-  
-  const toggleSidebar = () => {
-    updateSidebar(!isSidebarOpen);
-  };
-
   return (
     <div id="nav-sidebar">
       <div className="sidebar">
-        <div className="menu-icon" id="menu-icon" onClick={toggleSidebar}>
+        <div className="menu-icon" id="menu-icon" onClick={props.toggleSidebar}>
           <span></span>
           <span></span>
           <span></span>
@@ -25,7 +19,7 @@ const SideNavbar = (props) => {
         </div>
       </div>
 
-      <div className={`navbar ${isSidebarOpen ? 'sidebarVisible' : 'sidebarHidden'}`}>
+      <div className={`navbar ${props.isOpen ? 'sidebarVisible' : 'sidebarHidden'}`}>
         <div className="navbar__header">
           <h2 className="navbar__header-title">House of <br />Anasa</h2>
         </div>

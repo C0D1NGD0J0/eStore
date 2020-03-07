@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Navbar from "./components/Navigation/Main-Navigation/Navbar";
@@ -17,10 +17,21 @@ import Auth from "./pages/Auth/";
 import './sass/main.scss';
 
 function App() {
+  const [openSidenav, toggleSidenav] = useState(false);
+  
+  let handleClick = (evt) => {
+    let isOpen = document.getElementsByClassName("sidebarVisible").length > 0;
+    return isOpen ? toggleSidenav(!openSidenav) : null;
+  }
+
+  let _toggleSidenav = () =>{
+    toggleSidenav(!openSidenav);
+  }
+
   return (
     <Router>
-      <SideNavbar />
-      <main>
+      <SideNavbar isOpen={openSidenav} toggleSidebar={_toggleSidenav}/>
+      <main onClick={handleClick}>
         <Navbar />
         <Switch>
           <Route exact path="/" component={LandingPage} />

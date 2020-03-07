@@ -12,7 +12,7 @@ const authReducer = (state, action) => {
           ...payload.inputs
         },
         isFormValid: payload.isFormValid
-      }
+      };
     default:
       return state;
   }
@@ -21,25 +21,17 @@ const authReducer = (state, action) => {
 const useAuthForm = (initialInputs) =>{
   const [state, dispatch] = useReducer(authReducer, initialInputs);
   
-  useEffect(() =>{
-    
-  }, [state.isFormValid]);
-  
   const handleChange = (evt) =>{
     const { name, value } = evt.target;
     dispatch({ 
       type: 'ON_INPUT_CHANGE', 
       payload: { 
         inputs: {
-          [name]: { value, isValid: true }
+          [name]: { value, isValid: (value === "" ? false : true) }
         },
         isFormValid: Object.values(state.inputs).every((item) => item.isValid === true)
       }
     });
-  };
-
-  const updateButtonStatus = () =>{
-    return state.isFormValid;
   };
 
   return [state, handleChange];

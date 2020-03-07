@@ -23,13 +23,13 @@ const Login = (props) => {
     console.log(formData);
   };
 
-  const { inputs: { firstName, lastName, email, password, password2 }, isFormValid } = formData;
+  const { inputs: { email, password }, isFormValid } = formData;
 
   return (
     <div id="login" className={`auth-page__content ${props.show ? 'animated fadeIn slow' : ''}`} style={isVisible}>
       <div className="auth-page__content-img"></div>
       <div className="wrapper">
-        <form className="form">
+        <form className="form" onSubmit={handleSubmit}>
           <div className="form-group">
             <h3>Sign in</h3>
           </div>
@@ -40,6 +40,7 @@ const Login = (props) => {
             name="email"
             handlechange={handleChange}
             error=""
+            type="email"
           />
 
           <InputField
