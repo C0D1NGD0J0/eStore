@@ -1,37 +1,35 @@
 import React from 'react';
 import{ Link } from "react-router-dom";
-import useAuthForm from "../../utils/useForm";
+import useAuthForm from "../../utils/hooks/useForm";
 import InputField from "../../components/FormElements/inputField";
 import Button from "../../components/FormElements/button";
 
 const inputFields = {
   inputs: {
-    firstName: { value: "", isValid: false },
-    lastName: { value: "", isValid: false },
-    email: { value: "", isValid: false },
-    password: { value: "", isValid: false },
-    password2: { value: "", isValid: false },
-  },
-  isFormValid: false,
+    firstName: { value: "" },
+    lastName: { value: "" },
+    email: { value: "" },
+    password: { value: "" },
+    password2: { value: "" },
+  }
 };
 
 const Register = (props) => {
+  const { state, handleChange, handleFormSubmit, formErrors } = useAuthForm(inputFields, _handleSubmit, 'register');
+  
   const isVisible = {display: `${props.show ? 'flex' : 'none'}`};
   const cssClass = `auth-page__content ${props.show ? 'animated fadeIn slow' : ''}`;
 
-  const [formData, handleChange] = useAuthForm(inputFields);
-
-  const handleSubmit = (evt) =>{
-    evt.preventDefault();
-    console.log(formData);
+  function _handleSubmit(){
+    console.log(state.inputs);
   };
-
-  const { inputs: {firstName, lastName, email, password, password2}, isFormValid } = formData;
-
+  
+  const { inputs: {firstName, lastName, email, password, password2} } = state;
+  
   return (
     <div id="register" className={cssClass} style={isVisible}>
       <div className="wrapper">
-        <form className="form" noValidate onSubmit={handleSubmit}>
+        <form className="form" noValidate onSubmit={handleFormSubmit}>
           <div className="form-group">
             <h3>Register</h3>
           </div>
@@ -40,7 +38,7 @@ const Register = (props) => {
             placeholder="First Name"
             name="firstName"
             handlechange={handleChange}
-            error=""
+            error={formErrors && formErrors.firstName}
           />
 
           <InputField
@@ -48,7 +46,7 @@ const Register = (props) => {
             placeholder="Last Name"
             name="lastName"
             handlechange={handleChange}
-            error=""
+            error={formErrors && formErrors.lastName}
           />
 
           <InputField
@@ -56,7 +54,7 @@ const Register = (props) => {
             placeholder="Enter Email"
             name="email"
             handlechange={handleChange}
-            error=""
+            error={formErrors && formErrors.email}
           />
           
           <InputField
@@ -64,7 +62,7 @@ const Register = (props) => {
             placeholder="Enter Password"
             name="password"
             handlechange={handleChange}
-            error=""
+            error={formErrors && formErrors.password}
             type="password"
           />
           
@@ -73,12 +71,12 @@ const Register = (props) => {
             placeholder="Confirm Password"
             name="password2"
             handlechange={handleChange}
-            error=""
+            error={formErrors && formErrors.password2}
             type="password"
           />
 
           <div className="form-group">
-            <Button classes="btn-regular btn-lg" disabled={!isFormValid}>Register</Button>
+            <Button classes="btn-regular btn-lg">Register</Button>
           </div>
         </form>
       </div>
