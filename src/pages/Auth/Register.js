@@ -21,6 +21,7 @@ const Register = (props) => {
   const cssClass = `auth-page__content ${props.show ? 'animated fadeIn slow' : ''}`;
 
   function _handleSubmit(){
+    console.log(formErrors);
     console.log(state.inputs);
   };
   

@@ -27,9 +27,21 @@
   }
 
   .cart-table .p-qty {
-    width: 5rem;
-    padding: 1rem 0;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    td {
+      line-height: 1.5;
+      vertical-align: middle;
+      text-transform: uppercase;
+      font-size: 1.6rem;
+
+      .fa {
+        font-size: 1.4rem;
+        cursor: pointer;
+      }
+    }
   }
 
   .cart-sidebar {
@@ -39,7 +51,7 @@
     max-height: 100%;
     border-radius: .8rem;
     color: $off-white-color2;
-    box-shadow: 0 .4rem .5rem .2rem rgba(0,0,0,0.6);
+    box-shadow: 0 .4rem .5rem .2rem rgba(0, 0, 0, 0.6);
     background-color: $dark-brown-color;
   }
 

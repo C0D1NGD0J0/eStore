@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Collection from "../../components/Collection/";
 import ContentWrapper from "../../components/Layouts/ContentWrapper";
 
 const WishList = (props) => {
+  
   return (
     <ContentWrapper>
       <div className="row">

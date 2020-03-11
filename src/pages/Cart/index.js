@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentWrapper from "../../components/Layouts/ContentWrapper";
 import OrderSummary from './OrderSummary';
-import ShoppingCart from "../../components/FormElements/ProductTable";
+import ShoppingCartTable from "../../components/FormElements/ProductTable";
 import {Link} from "react-router-dom";
 
 const Cart = (props) => {
@@ -13,7 +13,7 @@ const Cart = (props) => {
             <div className="page-title">
               <h2>Shopping Cart</h2>
             </div>
-            <ShoppingCart />
+            <ShoppingCartTable />
             <div className="back-btn" style={{marginTop: "4rem"}}>
               <Link to="/store" className="btn btn-regular">Back to Shopping</Link>
             </div>
