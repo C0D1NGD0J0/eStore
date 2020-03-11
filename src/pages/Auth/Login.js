@@ -1,35 +1,33 @@
 import React from 'react';
-import useAuthForm from "../../utils/useForm";
+import useAuthForm from "../../utils/hooks/useForm";
 import InputField from "../../components/FormElements/inputField";
 import Button from "../../components/FormElements/button";
 
 const inputFields = {
   inputs: {
-    email: { value: "", isValid: false },
-    password: { value: "", isValid: false },
-  },
-  isFormValid: false,
+    email: { value: "" },
+    password: { value: "" },
+  }
 };
 
 const Login = (props) => {
+  const { state, handleChange, handleFormSubmit, formErrors } = useAuthForm(inputFields, _handleSubmit, 'login');
+
   const isVisible = {
     display: `${props.show ? 'flex' : 'none'}`
   };
 
-  const [formData, handleChange] = useAuthForm(inputFields);
-
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    console.log(formData);
+  function _handleSubmit() {
+    console.log(state.inputs);
   };
 
-  const { inputs: { email, password }, isFormValid } = formData;
-
+  const { inputs: { email, password } } = state;
+  
   return (
     <div id="login" className={`auth-page__content ${props.show ? 'animated fadeIn slow' : ''}`} style={isVisible}>
       <div className="auth-page__content-img"></div>
       <div className="wrapper">
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="form" noValidate onSubmit={handleFormSubmit}>
           <div className="form-group">
             <h3>Sign in</h3>
           </div>
@@ -39,7 +37,7 @@ const Login = (props) => {
             placeholder="Enter Email"
             name="email"
             handlechange={handleChange}
-            error=""
+            error={formErrors && formErrors.email}
             type="email"
           />
 
@@ -48,7 +46,7 @@ const Login = (props) => {
             placeholder="Enter Password"
             name="password"
             handlechange={handleChange}
-            error=""
+            error={formErrors && formErrors.password}
             type="password"
           />
 
@@ -59,7 +57,7 @@ const Login = (props) => {
           </div>
 
           <div className="form-group">
-            <Button classes="btn-regular btn-lg" disabled={!isFormValid}>Login</Button>
+            <Button classes="btn-regular btn-lg">Login</Button>
           </div>
         </form>
       </div>

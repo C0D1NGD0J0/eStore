@@ -2,7 +2,6 @@ import React from 'react';
 
 const InputField = (props) => {
   const { type, value, placeholder, name, handlechange, error, isRequired } = props;
-
   return (
     <div className="form-group">
       <input 
