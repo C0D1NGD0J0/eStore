@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from "react-redux";
 import{ Link } from "react-router-dom";
 import useAuthForm from "../../utils/hooks/useForm";
 import InputField from "../../components/FormElements/inputField";
 import Button from "../../components/FormElements/button";
+import { createNotification } from "../../actions/notification";
 
 const inputFields = {
   inputs: {
@@ -20,9 +22,13 @@ const Register = (props) => {
   const isVisible = {display: `${props.show ? 'flex' : 'none'}`};
   const cssClass = `auth-page__content ${props.show ? 'animated fadeIn slow' : ''}`;
 
-  function _handleSubmit(){
-    console.log(formErrors);
-    console.log(state.inputs);
+  function _handleSubmit(error){
+    const hasErrors = Object.values(error).length > 0;
+    if(!hasErrors){
+      
+    };
+
+    //props.createNotification("Oops!, something went wrong,", "danger");
   };
   
   const { inputs: {firstName, lastName, email, password, password2} } = state;
@@ -85,6 +91,6 @@ const Register = (props) => {
       <div className="auth-page__content-img"></div>
     </div>
   );
-}
+};
 
-export default Register;
+export default connect(null, {createNotification})(Register);

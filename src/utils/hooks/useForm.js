@@ -43,12 +43,13 @@ const useAuthForm = (initialInputs, handleSubmitCb, formType) =>{
     };
 
     setErrors({..._errors});
+    return _errors;
   };
   
   const handleFormSubmit = (evt) =>{
     evt.preventDefault();
-    validateForm();
-    handleSubmitCb();
+    const error =  validateForm();
+    handleSubmitCb(error);
   };
 
   return { state, handleChange, handleFormSubmit, formErrors };

@@ -1,0 +1,23 @@
+.notification-wrapper {
+  top: 15%;
+  right: 5%;
+  width: 30%;
+  z-index: 1000;
+  padding: 1.2rem;
+  position: fixed;
+  overflow-y: scroll;
+  border-radius: .3rem;
+  color: $off-white-color;
+  text-transform: uppercase;
+  transition: top .5s ease-in;
+  background-color: $dark-brown-color2;
+
+  &.success {
+    background-color: $success-color;
+  }
+
+  &.danger {
+    background-color: $danger-color;
+    box-shadow: 0 .6rem .9rem .6rem rgba(0,0,0,0.4);
+  }
+}
