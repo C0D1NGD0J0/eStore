@@ -17,6 +17,7 @@ import UserWishList from "./containers/User/Wishlist/";
 import Notification from "./components/Notification";
 import UserOrder from "./containers/User/UserOrder";
 import Auth from "./pages/Auth/";
+import AccountActivation from "./pages/Auth/accountActivation";
 import './sass/main.scss';
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
             <Route exact path="/wishlist" component={WishList} />
             <Route exact path="/cart" component={Cart} />
             <Route exact path="/auth" component={Auth} />
+            <Route exact path="/account_activation/:token" component={AccountActivation} />
             <Route exact path="/myaccount" component={UserAccount} />
             <Route exact path="/myaccount/settings" component={UserAccountSetting} />
             <Route exact path="/myaccount/wishlist" component={UserWishList} />

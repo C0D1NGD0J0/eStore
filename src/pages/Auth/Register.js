@@ -5,7 +5,6 @@ import useAuthForm from "../../utils/hooks/useForm";
 import InputField from "../../components/FormElements/inputField";
 import Button from "../../components/FormElements/button";
 import { userRegistration } from "../../actions/auth";
-import { createNotification } from "../../actions/notification";
 
 const inputFields = {
   inputs: {
@@ -97,4 +96,4 @@ const Register = (props) => {
   );
 };
 
-export default connect(null, { createNotification, userRegistration})(Register);
+export default connect(null, {userRegistration})(Register);

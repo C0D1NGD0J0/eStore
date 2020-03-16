@@ -90,3 +90,29 @@
     }
   }
 }
+
+.accountActivation {
+  width: 100%;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  background-size: cover;
+  justify-content: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(rgba($black-color, 0.6), rgba($black-color2, .9)), url('https://picsum.photos/400/700');
+
+  &__content{
+    width: 90%;
+    padding: 2rem;
+    text-align: center;
+    color: $off-white-color;
+
+    h1{
+      color: $gold-color;
+    }
+    p{
+      font-size: 2.5rem;
+    }
+  }
+}
