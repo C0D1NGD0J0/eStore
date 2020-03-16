@@ -4,6 +4,7 @@ import{ Link } from "react-router-dom";
 import useAuthForm from "../../utils/hooks/useForm";
 import InputField from "../../components/FormElements/inputField";
 import Button from "../../components/FormElements/button";
+import { userRegistration } from "../../actions/auth";
 import { createNotification } from "../../actions/notification";
 
 const inputFields = {
@@ -17,18 +18,21 @@ const inputFields = {
 };
 
 const Register = (props) => {
-  const { state, handleChange, handleFormSubmit, formErrors } = useAuthForm(inputFields, _handleSubmit, 'register');
+  const { state, handleChange, handleFormSubmit, formErrors, resetState } = useAuthForm(inputFields, _handleSubmit, 'register');
   
   const isVisible = {display: `${props.show ? 'flex' : 'none'}`};
   const cssClass = `auth-page__content ${props.show ? 'animated fadeIn slow' : ''}`;
 
   function _handleSubmit(error){
     const hasErrors = Object.values(error).length > 0;
-    if(!hasErrors){
-      
-    };
+    const { firstName, lastName, email, password } = state.inputs;
 
-    //props.createNotification("Oops!, something went wrong,", "danger");
+    if(!hasErrors){
+      const user = { firstName: firstName.value, lastName: lastName.value, email: email.value, password: password.value };
+      props.userRegistration(user, () =>{
+        resetState();
+      });
+    };
   };
   
   const { inputs: {firstName, lastName, email, password, password2} } = state;
@@ -93,4 +97,4 @@ const Register = (props) => {
   );
 };
 
-export default connect(null, {createNotification})(Register);
+export default connect(null, { createNotification, userRegistration})(Register);

@@ -52,7 +52,14 @@ const useAuthForm = (initialInputs, handleSubmitCb, formType) =>{
     handleSubmitCb(error);
   };
 
-  return { state, handleChange, handleFormSubmit, formErrors };
+  const resetState = () =>{
+    return dispatch({
+      type: 'ON_INPUT_CHANGE',
+      payload: initialInputs
+    });
+  };
+
+  return { state, handleChange, handleFormSubmit, formErrors, resetState };
 };
 
 export default useAuthForm;
