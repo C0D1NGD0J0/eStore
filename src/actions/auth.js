@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createNotification } from './notification';
-import { REGISTRATION_SUCCESS, REGISTRATION_FAIL, ACCOUNT_CONFIRMATION_SUCCESS, LOGIN_SUCCESS, LOGIN_FAIL, LOGIN_START, SET_CURRENTUSER, SET_AUTH_ERROR, PWD_RESET_SUCCESS } from "../actions/types";
+import { REGISTRATION_SUCCESS, REGISTRATION_FAIL, ACCOUNT_CONFIRMATION_SUCCESS, LOGIN_SUCCESS, LOGIN_FAIL, LOGIN_START, SET_CURRENTUSER, SET_AUTH_ERROR, PWD_RESET_SUCCESS, LOGOUT } from "../actions/types";
 import { setAuthHeaderToken } from "../config/";
 
 const { REACT_APP_API_URL } = process.env;
@@ -56,6 +56,11 @@ export const userLogin = (userdata, cb) => async dispatch =>{
   };
 };
 
+export const userLogout = () => dispatch =>{
+  dispatch({type: LOGOUT});
+  return dispatch((createNotification("Logout successful", "warning")));
+};
+
 export const getCurrentuser = () => async dispatch =>{
   if(localStorage.token){
     setAuthHeaderToken(localStorage.token);
@@ -67,8 +72,7 @@ export const getCurrentuser = () => async dispatch =>{
   } catch (err) {
     const error = err.response.data.error;
     console.log(error);
-    return dispatch({ type: SET_AUTH_ERROR });
-
+    //return dispatch({ type: SET_AUTH_ERROR });
     //return dispatch((createNotification(error, "danger")));
   };
 };

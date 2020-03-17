@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Collection from "../../components/Collection/";
 import ContentWrapper from "../../components/Layouts/ContentWrapper";
 
@@ -12,7 +12,7 @@ const WishList = (props) => {
             <h2>Wishlist</h2><hr width='5%'/>
           </div>
 
-          <div class="wishlist">
+          <div className="wishlist">
             <Collection />
           </div>
         </div>

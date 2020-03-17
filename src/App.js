@@ -7,6 +7,7 @@ import Navbar from "./components/Navigation/Main-Navigation/Navbar";
 import SideNavbar from "./components/Navigation/SidebarNav/";
 import Footer from "./components/Navigation/Footer";
 import LandingPage from "./pages/Home/";
+import NotFoundPage from "./components/Layouts/404";
 import SingleProduct from "./pages/Product/";
 import Store from "./pages/Store/";
 import WishList from "./pages/Wishlist";
@@ -16,15 +17,18 @@ import UserAccountSetting from "./containers/User/AccountSettings/";
 import UserWishList from "./containers/User/Wishlist/";
 import Notification from "./components/Notification";
 import UserOrder from "./containers/User/UserOrder";
+import ScrollToTop from "./utils/ScrollToTop";
 import Auth from "./pages/Auth/";
 import AccountActivation from "./pages/Auth/accountActivation";
 import RecoverPassword from "./pages/Auth/recoverPassword";
 import ResetPassword from "./pages/Auth/resetPassword";
 import { getCurrentuser } from "./actions/auth";
-import { setAuthHeaderToken } from "./config/";
+import { setAuthHeaderToken, validateTokenState } from "./config/";
+import PrivateRoute from "./config/PrivateRoute";
 import './sass/main.scss';
 
 if (localStorage.token) {
+  validateTokenState(ReduxStore);
   setAuthHeaderToken(localStorage.token);
 };
 
@@ -38,24 +42,27 @@ function App() {
       <Router>
         <SideNavbar />
         <main>
-          <Navbar />
-          <Notification />
-          <Switch>
-            <Route exact path="/" component={LandingPage} />
-            <Route exact path="/store" component={Store} />
-            <Route exact path="/products/:productId" component={SingleProduct} />
-            <Route exact path="/wishlist" component={WishList} />
-            <Route exact path="/cart" component={Cart} />
-            <Route exact path="/auth" component={Auth} />
-            <Route exact path="/auth/recoverpassword" component={RecoverPassword} />
-            <Route exact path="/auth/reset_password/:token" component={ResetPassword} />
-            <Route exact path="/auth/account_activation/:token" component={AccountActivation} />
-            <Route exact path="/myaccount" component={UserAccount} />
-            <Route exact path="/myaccount/settings" component={UserAccountSetting} />
-            <Route exact path="/myaccount/wishlist" component={UserWishList} />
-            <Route exact path="/myaccount/orders/:orderId" component={UserOrder} />
-          </Switch>
-          <Footer />
+          <ScrollToTop>
+            <Navbar />
+            <Notification />
+            <Switch>
+              <Route exact path="/" component={LandingPage} />
+              <Route exact path="/store" component={Store} />
+              <Route exact path="/products/:productId" component={SingleProduct} />
+              <Route exact path="/wishlist" component={WishList} />
+              <Route exact path="/cart" component={Cart} />
+              <Route exact path="/auth" component={Auth} />
+              <Route exact path="/auth/recoverpassword" component={RecoverPassword} />
+              <Route exact path="/auth/reset_password/:token" component={ResetPassword} />
+              <Route exact path="/auth/account_activation/:token" component={AccountActivation} />
+              <PrivateRoute exact path="/myaccount" component={UserAccount} />
+              <PrivateRoute exact path="/myaccount/settings" component={UserAccountSetting} />
+              <PrivateRoute exact path="/myaccount/wishlist" component={UserWishList} />
+              <PrivateRoute exact path="/myaccount/orders/:orderId" component={UserOrder} />
+              <Route component={NotFoundPage} />
+            </Switch>
+            <Footer />
+          </ScrollToTop>
         </main>
       </Router>
     </Provider>

@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { userLogout } from "../../../actions/auth";
 
-const NavbarLinks = (props) => {
+const NavbarLinks = ({ auth: { isAuthenticated }, userLogout }) => {
   return (
     <div className="header-navbar">
       <ul className="nav-list">
@@ -10,11 +12,19 @@ const NavbarLinks = (props) => {
             <i className="fas fa-home"></i> Home
           </Link>
         </li>
-        <li className="nav-list__item">
-          <Link to="/auth" className="nav-list__link">
-            <i className="fas fa-user"></i> Register/Login
-          </Link>
-        </li>
+        {
+          !isAuthenticated ? 
+            <li className="nav-list__item">
+              <Link to="/auth" className="nav-list__link">
+                <i className="fas fa-user"></i> Register/Login
+              </Link>
+            </li> :
+            <li className="nav-list__item">
+              <Link to="/myaccount" className="nav-list__link">
+                <i className="fas fa-user"></i> Account
+              </Link>
+            </li>
+        }
         <li className="nav-list__item animate-border">
           <Link to="/cart" className="nav-list__link">
             <i className="fas fa-shopping-bag"></i> Cart (2)
@@ -25,9 +35,21 @@ const NavbarLinks = (props) => {
             <i className="fas fa-heart"></i> Wishlist
           </Link>
         </li>
+        {
+          isAuthenticated ? 
+            <li className="nav-list__item">
+              <a href="#!" className="nav-list__link" onClick={userLogout}>
+                <i className="fas fa-sign-out-alt"></i> Logout
+              </a>
+            </li> : null
+        }
       </ul>
     </div>
   );
-}
+};
 
-export default NavbarLinks;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { userLogout })(NavbarLinks);

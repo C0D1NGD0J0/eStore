@@ -1,5 +1,7 @@
 import axios from "axios";
-//import jwtDecode from "jwt-decode";
+import jwtDecode from "jwt-decode";
+import { userLogout } from '../actions/auth';
+import { createNotification } from '../actions/notification';
 
 export const setAuthHeaderToken = token => {
   if (token) {
@@ -9,13 +11,14 @@ export const setAuthHeaderToken = token => {
   };
 };
 
-//export const validateTokenState = (store) => {
-//  if (localStorage.token) {
-//    const decoded = jwtDecode(localStorage.token);
-//    const currentTime = (Date.now().valueOf() / 1000);
+export const validateTokenState = (store) => {
+  const token = localStorage.getItem('token');
+  if (token && token !== 'undefined') {
+    const decoded = jwtDecode(token);
+    const currentTime = (Date.now().valueOf() / 1000);
 
-//    if (decoded.exp < currentTime) {
-//      return store.dispatch(logoutAction());
-//    };
-//  };
-//};
+    if (currentTime > (typeof decoded.exp !== 'undefined') && decoded.exp) {
+      return store.dispatch(userLogout());
+    };
+  };
+};

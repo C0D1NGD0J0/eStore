@@ -1,4 +1,4 @@
-import { REGISTRATION_SUCCESS, REGISTRATION_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, ACCOUNT_CONFIRMATION_SUCCESS, ACCOUNT_CONFIRMATION_FAIL, SET_CURRENTUSER, SET_AUTH_ERROR } from "../actions/types";
+import { REGISTRATION_SUCCESS, REGISTRATION_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, ACCOUNT_CONFIRMATION_SUCCESS, ACCOUNT_CONFIRMATION_FAIL, SET_CURRENTUSER, SET_AUTH_ERROR, LOGOUT } from "../actions/types";
 
 const initialState = {
   token: localStorage.getItem("token"),
@@ -18,6 +18,7 @@ const authReducer = (state = initialState, action) =>{
       };
     case REGISTRATION_FAIL:
     case LOGIN_FAIL:
+    case LOGOUT:
     case ACCOUNT_CONFIRMATION_FAIL:
     case SET_AUTH_ERROR:
       localStorage.removeItem('token');
@@ -29,11 +30,11 @@ const authReducer = (state = initialState, action) =>{
       };
     case ACCOUNT_CONFIRMATION_SUCCESS:
     case LOGIN_SUCCESS:
-      localStorage.setItem('toekn', payload.token);
+      localStorage.setItem('token', payload);
       return{
         ...state,
         loading: false,
-        token: payload.token,
+        token: payload,
         isAuthenticated: true
       };
     case SET_CURRENTUSER:

@@ -10,7 +10,7 @@ const Notification = ({notification, removeNotification}) => {
   return (
     notification.map((alert) =>{
       return (
-        <div className={`notification-wrapper ${alert.alertType}`}>
+        <div className={`notification-wrapper ${alert.alertType}`} key={alert.id}>
           <div onClick={() => removeNotification(alert.id)}>
             <p key={alert.id}>{alert.msg}</p>
           </div>
