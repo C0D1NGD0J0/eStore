@@ -45,3 +45,20 @@
     border: 1px solid $gold-color;
   }
 }
+
+.recover-password .form{
+  input{
+    margin: 1.5rem 0;
+    padding: 1.4rem;
+    font-size: 1.6rem;
+    background-color: $white-color;
+    border-color: $white-color;
+    width: 70%;
+  }
+
+  small{
+    font-size: 1.2rem;
+    color: $white-color;
+    text-transform: uppercase;
+  }
+}

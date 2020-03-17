@@ -17,7 +17,7 @@ const NavbarLinks = (props) => {
         </li>
         <li className="nav-list__item animate-border">
           <Link to="/cart" className="nav-list__link">
-            <i className="fas fa-shopping-cart"></i> Cart (2)
+            <i className="fas fa-shopping-bag"></i> Cart (2)
           </Link>
         </li>
         <li className="nav-list__item">

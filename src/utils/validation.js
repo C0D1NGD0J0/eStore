@@ -54,5 +54,33 @@ export const validate = (inputs) =>{
     return errors;
   };
 
-  return {login, signup}
+  const emailField = () => {
+    if (!inputs.email.value) {
+      errors.email = "Email address is required!";
+    } else if (!EMAIL_FORMAT.test(inputs.email.value)) {
+      errors.email = "Email address format is invalid.";
+    };
+
+    return errors;
+  };
+
+  const passwordFields = () =>{
+    if (!inputs.password.value) {
+      errors.password = "Password is required!";
+    } else if (inputs.password.value.length < 6) {
+      errors.password = "Password needs to ne more than 6 characters";
+    };
+
+    if (!inputs.password2.value) {
+      errors.password2 = "Password Confirmation is required!";
+    } else if (inputs.password2.value.length < 6) {
+      errors.password2 = "Password2 needs to ne more than 6 characters";
+    } else if (inputs.password2.value !== inputs.password.value) {
+      errors.password2 = "Password and Password Confirmation don't match";
+    };
+
+    return errors;
+  };
+
+  return { login, signup, emailField, passwordFields };
 };

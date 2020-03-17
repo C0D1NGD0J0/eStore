@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import useAuthForm from "../../utils/hooks/useForm";
 import InputField from "../../components/FormElements/inputField";
 import Button from "../../components/FormElements/button";
@@ -70,6 +71,11 @@ const Login = (props) => {
             <Button classes="btn-regular btn-lg">Login</Button>
           </div>
         </form>
+        <div className="form-group pwdReset">
+          <Link to="/auth/recoverpassword">
+            Forgotten your password? >>
+          </Link>
+        </div>
       </div>
     </div>
   );

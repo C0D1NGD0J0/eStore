@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createNotification } from './notification';
-import { REGISTRATION_SUCCESS, REGISTRATION_FAIL, ACCOUNT_CONFIRMATION_SUCCESS, LOGIN_SUCCESS, LOGIN_FAIL, LOGIN_START, SET_CURRENTUSER, SET_AUTH_ERROR } from "../actions/types";
+import { REGISTRATION_SUCCESS, REGISTRATION_FAIL, ACCOUNT_CONFIRMATION_SUCCESS, LOGIN_SUCCESS, LOGIN_FAIL, LOGIN_START, SET_CURRENTUSER, SET_AUTH_ERROR, PWD_RESET_SUCCESS } from "../actions/types";
 import { setAuthHeaderToken } from "../config/";
 
 const { REACT_APP_API_URL } = process.env;
@@ -70,5 +70,32 @@ export const getCurrentuser = () => async dispatch =>{
     return dispatch({ type: SET_AUTH_ERROR });
 
     //return dispatch((createNotification(error, "danger")));
+  };
+};
+
+export const forgotPassword = (userdata, cb) => async dispatch =>{
+  try {
+    const res = await axios.post(`${REACT_APP_API_URL}/auth/forgot_password`, userdata);
+    dispatch(createNotification(res.data.msg, "success"));
+    return cb();
+  } catch (err) {
+    const error = err.response.data.error;
+  
+    dispatch({ type: SET_AUTH_ERROR });
+    return dispatch((createNotification(error, "danger")));
+  };
+};
+
+export const resetPassword = (userdata, token, cb) => async dispatch =>{
+  try {
+    const res = await axios.put(`${REACT_APP_API_URL}/auth/reset_password/${token}`, userdata);
+    dispatch({ type: PWD_RESET_SUCCESS, payload: res.data.token });
+    dispatch(createNotification("Password reset was successful.", "success"));
+    return cb();
+  } catch (err) {
+    const error = err.response.data.error;
+  
+    dispatch({ type: SET_AUTH_ERROR });
+    return dispatch((createNotification(error, "danger")));
   };
 };

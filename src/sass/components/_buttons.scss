@@ -13,7 +13,7 @@
   transition: all 0.4s ease-in-out;
   
   &-lg {
-    padding: 1rem 4rem;
+    padding: 1.2rem 6rem;
   }
 
   &-danger {
@@ -31,16 +31,18 @@
   }
 
   &-gold {
+    font-size: 1.4rem;
+    color: $white-color;
     border-color: $gold-color;
     transition: all 0.4s ease-in-out;
 
-    &:hover,
-    &:focus {
-      border: transparent;
-      color: $white-color;
-      background-color: $gold-color;
-      transition: all 0.4s ease-in-out;
-    }
+    //&:hover,
+    //&:focus {
+    //  border: transparent;
+    //  color: $white-color;
+    //  background-color: $gold-color;
+    //  transition: all 0.4s ease-in-out;
+    //}
   }
 
   &-regular {

@@ -40,6 +40,10 @@ const useAuthForm = (initialInputs, handleSubmitCb, formType) =>{
       _errors = validate(state.inputs).login();
     } else if(formType === 'register'){
       _errors = validate(state.inputs).signup();
+    } else if ((formType === 'forgotPwd')){
+      _errors = validate(state.inputs).emailField();
+    } else if ((formType === 'resetPwd')) {
+      _errors = validate(state.inputs).passwordFields();
     };
 
     setErrors({..._errors});
