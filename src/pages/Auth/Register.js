@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from "react-redux";
-import{ Link } from "react-router-dom";
 import useAuthForm from "../../utils/hooks/useForm";
 import InputField from "../../components/FormElements/inputField";
 import Button from "../../components/FormElements/button";
@@ -27,8 +26,8 @@ const Register = (props) => {
     const { firstName, lastName, email, password } = state.inputs;
 
     if(!hasErrors){
-      const user = { firstName: firstName.value, lastName: lastName.value, email: email.value, password: password.value };
-      props.userRegistration(user, () =>{
+      const userdata = { firstName: firstName.value, lastName: lastName.value, email: email.value, password: password.value };
+      props.userRegistration(userdata, () =>{
         resetState();
       });
     };

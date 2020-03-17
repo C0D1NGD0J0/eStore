@@ -2,6 +2,8 @@ import React, {useReducer} from 'react';
 import ContentWrapper from "../../components/Layouts/ContentWrapper";
 import AuthHeader from './authHeader';
 import Login from "./Login";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import Register from "./Register";
 
 const reducer = (state, action) =>{
@@ -33,6 +35,10 @@ const Auth = (props) => {
     dispatch({ type: authType });
   };
 
+  if(props.isAuthenticated){
+    return <Redirect to="/store" />
+  };
+
   return (
     <ContentWrapper>
       <div className="row" id="auth-page">
@@ -40,7 +46,7 @@ const Auth = (props) => {
           <AuthHeader handleClick={handleToggleClick} isActive={state}/>
 
           <div className="auth-page">
-            {state.isLogin && <Login show={state.isLogin} />}
+            {state.isLogin && <Login show={state.isLogin} history={props.history}/>}
             {state.isRegister && <Register show={state.isRegister} />}
           </div>
         </div>
@@ -49,4 +55,8 @@ const Auth = (props) => {
   );
 }
 
-export default Auth;
+const mapStateToProps = state =>({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps)(Auth);

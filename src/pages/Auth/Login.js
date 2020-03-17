@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from "react-redux";
 import useAuthForm from "../../utils/hooks/useForm";
 import InputField from "../../components/FormElements/inputField";
 import Button from "../../components/FormElements/button";
+import { userLogin } from "../../actions/auth";
 
 const inputFields = {
   inputs: {
@@ -11,20 +13,28 @@ const inputFields = {
 };
 
 const Login = (props) => {
-  const { state, handleChange, handleFormSubmit, formErrors } = useAuthForm(inputFields, _handleSubmit, 'login');
+  const { state, handleChange, handleFormSubmit, formErrors, resetState } = useAuthForm(inputFields, _handleSubmit, 'login');
 
-  const isVisible = {
-    display: `${props.show ? 'flex' : 'none'}`
-  };
+  const isVisible = {display: `${props.show ? 'flex' : 'none'}`};
+  const cssClass = `auth-page__content ${props.show ? 'animated fadeIn slow' : ''}`;
 
-  function _handleSubmit() {
-    console.log(state.inputs);
+  function _handleSubmit(error) {
+    const hasErrors = Object.values(error).length > 0;
+    const { email, password } = state.inputs;
+
+    if (!hasErrors) {
+      const userdata = { email: email.value, password: password.value };
+      
+      props.userLogin(userdata, () => {
+        props.history.push("/myaccount");
+      });
+    };
   };
 
   const { inputs: { email, password } } = state;
   
   return (
-    <div id="login" className={`auth-page__content ${props.show ? 'animated fadeIn slow' : ''}`} style={isVisible}>
+    <div id="login" className={cssClass} style={isVisible}>
       <div className="auth-page__content-img"></div>
       <div className="wrapper">
         <form className="form" noValidate onSubmit={handleFormSubmit}>
@@ -65,4 +75,4 @@ const Login = (props) => {
   );
 }
 
-export default Login;
+export default connect(null, {userLogin})(Login);

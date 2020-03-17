@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Provider } from "react-redux";
 import ReduxStore from "./store";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -18,25 +18,24 @@ import Notification from "./components/Notification";
 import UserOrder from "./containers/User/UserOrder";
 import Auth from "./pages/Auth/";
 import AccountActivation from "./pages/Auth/accountActivation";
+import { getCurrentuser } from "./actions/auth";
+import { setAuthHeaderToken } from "./config/";
 import './sass/main.scss';
 
-function App() {
-  const [openSidenav, toggleSidenav] = useState(false);
-  
-  let handleClick = (evt) => {
-    let isOpen = document.getElementsByClassName("sidebarVisible").length > 0;
-    return isOpen ? toggleSidenav(!openSidenav) : null;
-  }
+if (localStorage.token) {
+  setAuthHeaderToken(localStorage.token);
+};
 
-  let _toggleSidenav = () =>{
-    toggleSidenav(!openSidenav);
-  }
+function App() {
+  useEffect(() => {
+    ReduxStore.dispatch(getCurrentuser());
+  }, []);
 
   return (
     <Provider store={ReduxStore}>
       <Router>
-        <SideNavbar isOpen={openSidenav} toggleSidebar={_toggleSidenav}/>
-        <main onClick={handleClick}>
+        <SideNavbar />
+        <main>
           <Navbar />
           <Notification />
           <Switch>

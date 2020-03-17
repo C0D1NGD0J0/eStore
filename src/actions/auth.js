@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createNotification } from './notification';
-import { REGISTRATION_SUCCESS, REGISTRATION_FAIL, ACCOUNT_CONFIRMATION_SUCCESS, LOGIN_SUCCESS, LOGIN_FAIL } from "../actions/types";
+import { REGISTRATION_SUCCESS, REGISTRATION_FAIL, ACCOUNT_CONFIRMATION_SUCCESS, LOGIN_SUCCESS, LOGIN_FAIL, LOGIN_START, SET_CURRENTUSER, SET_AUTH_ERROR } from "../actions/types";
+import { setAuthHeaderToken } from "../config/";
 
 const { REACT_APP_API_URL } = process.env;
 
@@ -37,5 +38,37 @@ export const activateAccount = (token) => async dispatch =>{
     dispatch({ type: REGISTRATION_FAIL });
 
     return dispatch((createNotification(error, "danger")));
+  };
+};
+
+export const userLogin = (userdata, cb) => async dispatch =>{
+  try {
+    dispatch({type: LOGIN_START});
+    const res = await axios.post(`${REACT_APP_API_URL}/auth/login`, userdata);
+    dispatch({type: LOGIN_SUCCESS, payload: res.data.token});
+    dispatch(createNotification("Login was successful.", "success"));
+    return cb();
+  } catch (err) {
+    const error = err.response.data.error;
+    dispatch({ type: LOGIN_FAIL });
+
+    return dispatch((createNotification(error, "danger")));
+  };
+};
+
+export const getCurrentuser = () => async dispatch =>{
+  if(localStorage.token){
+    setAuthHeaderToken(localStorage.token);
+  };
+
+  try {
+    const res = await axios.get(`${REACT_APP_API_URL}/users/currentuser`);
+    return dispatch({type: SET_CURRENTUSER, payload: res.data.currentuser});
+  } catch (err) {
+    const error = err.response.data.error;
+    console.log(error);
+    return dispatch({ type: SET_AUTH_ERROR });
+
+    //return dispatch((createNotification(error, "danger")));
   };
 };
