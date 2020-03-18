@@ -104,8 +104,8 @@
         position: relative;
 
         &__link {
-          color: $black-color;
           font-size: 1.6rem;
+          color: $dark-brown-color;
           transition: color 0.5s ease-in-out;
 
           &:hover,
@@ -292,13 +292,14 @@
     .menu-list {
       display: flex;
       flex: 1 0 auto;
+      padding: .4rem 0;
       list-style: none;
       align-items: center;
       justify-content: space-evenly;
 
       &__link {
         font-size: 1.2rem;
-        font-weight: normal;
+        font-weight: bold;
         color: $dark-brown-color2;
         transition: all 0.5s ease-in-out;
 

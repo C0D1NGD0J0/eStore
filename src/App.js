@@ -47,7 +47,7 @@ function App() {
             <Notification />
             <Switch>
               <Route exact path="/" component={LandingPage} />
-              <Route exact path="/store" component={Store} />
+              <Route exact path="/store/cat/:category" component={Store} />
               <Route exact path="/products/:productId" component={SingleProduct} />
               <Route exact path="/wishlist" component={WishList} />
               <Route exact path="/cart" component={Cart} />

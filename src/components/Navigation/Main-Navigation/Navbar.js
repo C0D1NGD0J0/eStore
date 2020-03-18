@@ -2,6 +2,7 @@ import React from 'react';
 import NavbarSearch from './NavbarSearch';
 import NavbarLinks from './NavbarLinks';
 import NavbarCategoryLinks from './NavbarCategoryLinks';
+import { withRouter } from "react-router-dom";
 
 const Navbar = (props) => {
   return (
@@ -13,4 +14,4 @@ const Navbar = (props) => {
   );
 }
 
-export default Navbar;
+export default withRouter(Navbar);

@@ -1,18 +1,13 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import { useHistory } from "react-router-dom";
+import { getSubCategories } from "../../../actions/category";
+import SubCategoryOptions from './subCategory';
 
 const StoreSidebar = (props) => {
+  
   return (
     <div className="sidebar-widget">
-      <div className="sidebar-widget__box">
-        <h5>Category</h5>
-        <hr width="10%" />
-        <ul className="category-list">
-          <li><label>Sound Systems <span className="count">(25)</span></label></li>
-          <li><label>Furniture <span className="count">(25)</span></label></li>
-          <li><label>Electronics <span className="count">(35)</span></label></li>
-          <li><label>Accessories <span className="count">(60)</span></label></li>
-        </ul>
-      </div>
+      <SubCategoryOptions subCategories={props.subCategories} /> 
 
       <div className="sidebar-widget__box">
         <h5>Price</h5>
