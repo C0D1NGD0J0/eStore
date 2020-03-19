@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from "react-redux";
 import ContentWrapper from "../../../components/Layouts/ContentWrapper";
 import UserSidebarOptions from '../userSidebarOptions';
-import PasswordSettingForm from "./passwordSetting";
 import ProfileSettingForm from "./profileSettingForm";
 
 const AccountSettings = (props) => {
+  const { currentuser } = useSelector(state => state.auth);
+  
   return (
     <ContentWrapper>
       <div className="row">
@@ -16,8 +18,7 @@ const AccountSettings = (props) => {
 
         <div className="sm-9 col" id="userAccount-page">
           <div className="account-settings">
-            <ProfileSettingForm />
-            <PasswordSettingForm />
+            <ProfileSettingForm currentuser={currentuser}/>
           </div>
         </div>
       </div>

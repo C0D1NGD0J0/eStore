@@ -13,6 +13,14 @@ const authReducer = (state, action) => {
           ...payload.inputs
         }
       };
+    case 'ON_FIELD_CHANGE':
+      return{
+        ...state,
+        inputs:{
+          ...state.inputs,
+          [payload]: {value: ""}
+        }
+      }
     default:
       return state;
   }
@@ -44,6 +52,8 @@ const useAuthForm = (initialInputs, handleSubmitCb, formType) =>{
       _errors = validate(state.inputs).emailField();
     } else if ((formType === 'resetPwd')) {
       _errors = validate(state.inputs).passwordFields();
+    } else if ((formType === 'updateUser')) {
+      _errors = validate(state.inputs).updateUser();
     };
 
     setErrors({..._errors});
@@ -56,14 +66,21 @@ const useAuthForm = (initialInputs, handleSubmitCb, formType) =>{
     handleSubmitCb(error);
   };
 
-  const resetState = () =>{
+  const resetState = (fieldObj) =>{
     return dispatch({
       type: 'ON_INPUT_CHANGE',
       payload: initialInputs
     });
   };
 
-  return { state, handleChange, handleFormSubmit, formErrors, resetState };
+  const resetStateField = (field) => {
+    return dispatch({
+      type: 'ON_FIELD_CHANGE',
+      payload: field
+    });
+  };
+
+  return { state, handleChange, handleFormSubmit, formErrors, resetState, resetStateField };
 };
 
 export default useAuthForm;

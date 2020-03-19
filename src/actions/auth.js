@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createNotification } from './notification';
-import { REGISTRATION_SUCCESS, REGISTRATION_FAIL, ACCOUNT_CONFIRMATION_SUCCESS, LOGIN_SUCCESS, LOGIN_FAIL, LOGIN_START, SET_CURRENTUSER, SET_AUTH_ERROR, PWD_RESET_SUCCESS, LOGOUT } from "../actions/types";
+import { REGISTRATION_SUCCESS, REGISTRATION_FAIL, ACCOUNT_CONFIRMATION_SUCCESS, LOGIN_SUCCESS, LOGIN_FAIL, LOGIN_START, SET_CURRENTUSER, SET_AUTH_ERROR, PWD_RESET_SUCCESS, LOGOUT, UPDATE_ACCOUNT_SUCCESS, UPDATE_ACCOUNT_FAIL } from "../actions/types";
 import { setAuthHeaderToken } from "../config/";
 
 const { REACT_APP_API_URL } = process.env;
@@ -47,6 +47,7 @@ export const userLogin = (userdata, cb) => async dispatch =>{
     const res = await axios.post(`${REACT_APP_API_URL}/auth/login`, userdata);
     dispatch({type: LOGIN_SUCCESS, payload: res.data.token});
     dispatch(createNotification("Login was successful.", "success"));
+    dispatch(getCurrentuser());
     return cb();
   } catch (err) {
     const error = err.response.data.error;
@@ -61,19 +62,44 @@ export const userLogout = () => dispatch =>{
   return dispatch((createNotification("Logout successful", "warning")));
 };
 
-export const getCurrentuser = () => async dispatch =>{
+export const getCurrentuser = (callback) => async dispatch =>{
   if(localStorage.token){
     setAuthHeaderToken(localStorage.token);
   };
 
   try {
     const res = await axios.get(`${REACT_APP_API_URL}/users/currentuser`);
-    return dispatch({type: SET_CURRENTUSER, payload: res.data.currentuser});
+    dispatch({type: SET_CURRENTUSER, payload: res.data.currentuser});
   } catch (err) {
     const error = err.response.data.error;
     console.log(error);
-    //return dispatch({ type: SET_AUTH_ERROR });
-    //return dispatch((createNotification(error, "danger")));
+    return dispatch({ type: SET_AUTH_ERROR });
+  };
+
+  if (callback) {
+    callback()
+  };
+};
+
+export const updateAccountSettings = (userdata) => async dispatch =>{
+  try {
+    const res = await axios.put(`${REACT_APP_API_URL}/users/currentuser/updateAccount`, userdata);
+    dispatch({ type: UPDATE_ACCOUNT_SUCCESS, payload: res.data.currentuser });
+    return dispatch(createNotification("Update was successful.", "success"));
+  } catch (err) {
+    console.log(err);
+    const errors = err.response.data.errors;
+    dispatch({ type: UPDATE_ACCOUNT_FAIL });
+    
+    if (errors) {
+      errors.forEach(e => {
+        dispatch(createNotification(e.msg, "danger"));
+      });
+
+      return;
+    };
+
+    return dispatch((createNotification(err.response.data.error, "danger")));
   };
 };
 

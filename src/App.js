@@ -27,15 +27,23 @@ import { setAuthHeaderToken, validateTokenState } from "./config/";
 import PrivateRoute from "./config/PrivateRoute";
 import './sass/main.scss';
 
-if (localStorage.token) {
-  validateTokenState(ReduxStore);
-  setAuthHeaderToken(localStorage.token);
-};
-
 function App() {
+  const [pageLoaded, setPageLoaded] = useState(false);
+
   useEffect(() => {
-    ReduxStore.dispatch(getCurrentuser());
+    if (localStorage.getItem('token')) {
+      ReduxStore.dispatch(getCurrentuser(()=> setPageLoaded(!pageLoaded)));
+    } else {
+      setPageLoaded(!pageLoaded);
+    };
+    validateTokenState(ReduxStore);
+    setAuthHeaderToken(localStorage.getItem('token'));
   }, []);
+
+
+  if(!pageLoaded){
+    return <div>loading ...</div>
+  }
 
   return (
     <Provider store={ReduxStore}>

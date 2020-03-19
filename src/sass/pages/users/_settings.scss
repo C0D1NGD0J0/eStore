@@ -1,0 +1,16 @@
+.account-settings {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+
+  &__info {
+    width: 100%;
+    padding: 0 2rem;
+
+    .row, .col {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

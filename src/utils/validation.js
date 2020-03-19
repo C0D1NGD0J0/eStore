@@ -54,6 +54,45 @@ export const validate = (inputs) =>{
     return errors;
   };
 
+  const updateUser = () =>{
+    if (!inputs.firstName.value) {
+      errors.firstName = "First name is required!";
+    } else if (inputs.firstName.value.length < 3) {
+      errors.firstName = "First name has to be longer than 3 characters.";
+    };
+
+    if (!inputs.lastName.value) {
+      errors.lastName = "Last name is required!";
+    } else if (inputs.lastName.value.length < 3) {
+      errors.lastName = "Last name has to be longer than 3 characters.";
+    };
+
+    if (!inputs.email.value) {
+      errors.email = "Email address is required!";
+    } else if (!EMAIL_FORMAT.test(inputs.email.value)) {
+      errors.email = "Email address format is invalid.";
+    };
+
+    if (!inputs.currentPwd.value) {
+      errors.currentPwd = "Current password is required to update account.";
+    };
+
+    //if user decided to update password
+    if (inputs.password.value) {
+      if (inputs.password.value.length < 6) {
+        errors.password = "Password needs to ne more than 6 characters";
+      };
+
+      if (!inputs.password2.value) {
+        errors.password2 = "Password Confirmation is required!";
+      } else if (inputs.password2.value !== inputs.password.value) {
+        errors.password2 = "Password and Password Confirmation don't match";
+      };
+    };
+
+    return errors;
+  };
+
   const emailField = () => {
     if (!inputs.email.value) {
       errors.email = "Email address is required!";
@@ -82,5 +121,5 @@ export const validate = (inputs) =>{
     return errors;
   };
 
-  return { login, signup, emailField, passwordFields };
+  return { login, signup, emailField, passwordFields, updateUser };
 };

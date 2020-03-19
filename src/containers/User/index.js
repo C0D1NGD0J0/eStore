@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import UserOrdersTable from './userOrdersTable';
 import UserSidebarOptions from './userSidebarOptions';
 import ContentWrapper from "../../components/Layouts/ContentWrapper";
 
 class UserDashboard extends Component {
+  constructor(props){
+    super(props);
+    this.state = {}
+  }
+
   render() {
     return (
       <ContentWrapper>
@@ -33,4 +39,4 @@ class UserDashboard extends Component {
   }
 }
 
-export default UserDashboard;
+export default connect(null)(UserDashboard);

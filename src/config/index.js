@@ -17,7 +17,7 @@ export const validateTokenState = (store) => {
     const decoded = jwtDecode(token);
     const currentTime = (Date.now().valueOf() / 1000);
 
-    if (currentTime > (typeof decoded.exp !== 'undefined') && decoded.exp) {
+    if (currentTime < (typeof decoded.exp !== 'undefined') && decoded.exp) {
       return store.dispatch(userLogout());
     };
   };
