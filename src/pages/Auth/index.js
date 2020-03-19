@@ -27,8 +27,8 @@ const reducer = (state, action) =>{
 
 const Auth = (props) => {
   const [state, dispatch] = useReducer(reducer, {
-    isLogin: false,
-    isRegister: true
+    isLogin: true,
+    isRegister: false
   });
 
   const handleToggleClick = (authType) =>{
