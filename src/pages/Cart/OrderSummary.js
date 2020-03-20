@@ -38,7 +38,7 @@ const OrderSummary = (props) => {
       <ul className="order-summary__list">
         <li className="order-summary__list-item">
           <span className="title">Order subtotal</span>
-          <span className="amount">${cartTotal}</span>
+          <span className="amount">${cartTotal.toFixed(2)}</span>
         </li>
         <li className="order-summary__list-item">
           <span className="title">Shipping</span>
