@@ -63,7 +63,7 @@ class Store extends Component {
               <StoreHeader title={this.state.currentCategory}/>
               {
                 PRODUCTS.map(({products}, idx) =>{
-                  return <ProductCollection key={idx} products={products}/>
+                  return <ProductCollection key={idx} collection={products}/>
                 })
               }
               <Pagination />

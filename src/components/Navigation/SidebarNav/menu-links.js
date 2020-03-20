@@ -2,8 +2,10 @@ import React, { Fragment } from 'react';
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { userLogout } from "../../../actions/auth";
+import { selectCartItemsCount } from "../../../selectors/cartSelector";
 
-const SidebarMenuLinks = ({ auth: { isAuthenticated }, userLogout }) => {
+const SidebarMenuLinks = ({ auth: { isAuthenticated }, userLogout, cartItemCount }) => {
+
   return (
     <ul className="navbar__list">
       <li className="navbar__list-item">
@@ -31,14 +33,17 @@ const SidebarMenuLinks = ({ auth: { isAuthenticated }, userLogout }) => {
           )
       }
       <li className="navbar__list-item">
-        <Link to="/cart" className="navbar__list-item__link">Cart</Link>
+        <Link to="/cart" className="navbar__list-item__link">
+          <i className="fas fa-shopping-bag"></i> Cart ({cartItemCount})
+        </Link>
       </li>
     </ul>
   );
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  cartItemCount: selectCartItemsCount(state)
 });
 
 export default connect(mapStateToProps, { userLogout })(SidebarMenuLinks);

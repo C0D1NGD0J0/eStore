@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { userLogout } from "../../../actions/auth";
+import { selectCartItemsCount } from "../../../selectors/cartSelector";
 
-const NavbarLinks = ({ auth: { isAuthenticated }, userLogout }) => {
+const NavbarLinks = ({ auth: { isAuthenticated }, userLogout, cartItemCount }) => {
+  
   return (
     <div className="header-navbar">
       <ul className="nav-list">
@@ -25,9 +27,9 @@ const NavbarLinks = ({ auth: { isAuthenticated }, userLogout }) => {
               </Link>
             </li>
         }
-        <li className="nav-list__item animate-border">
+        <li className={`nav-list__item ${cartItemCount > 0 ? 'animate-border' : null}`}>
           <Link to="/cart" className="nav-list__link">
-            <i className="fas fa-shopping-bag"></i> Cart (2)
+            <i className="fas fa-shopping-bag"></i> Cart ({cartItemCount})
           </Link>
         </li>
         <li className="nav-list__item">
@@ -49,7 +51,8 @@ const NavbarLinks = ({ auth: { isAuthenticated }, userLogout }) => {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  cartItemCount: selectCartItemsCount(state)
 });
 
 export default connect(mapStateToProps, { userLogout })(NavbarLinks);

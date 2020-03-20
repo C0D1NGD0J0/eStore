@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import notification from "./notification";
-import auth from "./auth";
+import notificationReducer from "./notification";
+import authReducer from "./auth";
+import cartReducer from "./cart";
 
 export default combineReducers({
-  notification,
-  auth
+  notification: notificationReducer,
+  auth: authReducer,
+  cart: cartReducer
 });
