@@ -30,12 +30,12 @@ const Auth = (props) => {
     isLogin: true,
     isRegister: false
   });
-
+    
   const handleToggleClick = (authType) =>{
     dispatch({ type: authType });
   };
 
-  if(props.isAuthenticated){
+  if (props.isAuthenticated) {
     return <Redirect to="/store" />
   };
 
@@ -46,7 +46,7 @@ const Auth = (props) => {
           <AuthHeader handleClick={handleToggleClick} isActive={state}/>
 
           <div className="auth-page">
-            {state.isLogin && <Login show={state.isLogin} history={props.history}/>}
+            {state.isLogin && <Login show={state.isLogin} history={props.history} />}
             {state.isRegister && <Register show={state.isRegister} />}
           </div>
         </div>

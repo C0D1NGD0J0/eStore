@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useAuthForm from "../../utils/hooks/useForm";
 import InputField from "../../components/FormElements/inputField";
 import Button from "../../components/FormElements/button";
@@ -18,6 +18,7 @@ const Login = (props) => {
 
   const isVisible = {display: `${props.show ? 'flex' : 'none'}`};
   const cssClass = `auth-page__content ${props.show ? 'animated fadeIn slow' : ''}`;
+  const location = useLocation();
 
   function _handleSubmit(error) {
     const hasErrors = Object.values(error).length > 0;
@@ -27,7 +28,11 @@ const Login = (props) => {
       const userdata = { email: email.value, password: password.value };
       
       props.userLogin(userdata, () => {
-        props.history.push("/myaccount");
+        if ((location && location.state)) {
+          const { originPath } = location.state;
+          return props.history.replace(originPath);
+        };
+        props.history.push("/store");
       });
     };
   };
