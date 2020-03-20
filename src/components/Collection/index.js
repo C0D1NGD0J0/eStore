@@ -9,7 +9,7 @@ const Collection = (props) => {
   if(collection.length <= 0){
     return (
     <div className="page-title">
-      <h2>You currently don't have any items in your wishlist.</h2>
+      <h2>Currently empty.</h2>
     </div>)
   }
   return (

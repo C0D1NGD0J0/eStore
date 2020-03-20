@@ -2,11 +2,11 @@ import React from 'react';
 import{ Link } from "react-router-dom";
 
 const ProductTable = (props) => {
-  const { collection } = props;
+  const { collection, clearItems, reduceQty, increaseQty } = props;
 
   let tr = collection && collection.map((item) =>{
     return (
-    <tr>
+    <tr key={item.id}>
       <td>
         <Link to="#!"><img className="cart-table__img" src={item.imgUrl} alt={item.name} /></Link>
       </td>
@@ -14,21 +14,21 @@ const ProductTable = (props) => {
       <td>${item.price}</td>
       <td>
         <div className="cart-table p-qty">
-          <span className="fa fa-arrow-down"></span>
+          <span onClick={() => reduceQty(item)} className="fa fa-arrow-down"></span>
           <span className="p-qty">{item.quantity}</span>
-          <span className="fa fa-arrow-up"></span>
+          <span onClick={() => increaseQty(item)} className="fa fa-arrow-up"></span>
         </div>
       </td>
       <td>{`$${item.quantity * item.price}`}</td>
-      <td><a href="#"><i className="fa fa-trash"></i></a></td>
+        <td><span onClick={() => clearItems(item)}><i className="fa fa-trash"></i></span></td>
     </tr>);
   });
 
   if(!collection || collection.length <= 0){
     tr = (
-      <div style={{margin: "2rem 0"}}>
-        <h3>Your cart is currently empty!</h3>
-      </div>
+      <tr style={{margin: "4rem 0"}}>
+        <td colSpan="5">Your cart is currently empty!</td>
+      </tr>
     );
   };
 
