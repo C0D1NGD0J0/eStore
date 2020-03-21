@@ -13,7 +13,7 @@ export const updateCartItemsCount = (items, newItem) =>{
 };
 
 export const removeItemFromCart = (cart, item) => {
-  const ismatchItem = cart.find(product => product.id !== item.id);
+  const ismatchItem = cart.find(product => product.id === item.id);
 
   if (ismatchItem.quantity === 1) {
     return cart.filter((p) => p.id !== item.id);
@@ -21,7 +21,7 @@ export const removeItemFromCart = (cart, item) => {
 
   return cart.map((p) => {
     if (p.id === item.id) {
-      return { ...p, quantity: p.quantity-- }
+      return { ...p, quantity: p.quantity - 1 }
     } else {
       return p;
     };
