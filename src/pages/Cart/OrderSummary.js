@@ -52,15 +52,19 @@ const OrderSummary = (props) => {
           <span className="title total">Total</span>
           <span className="amount">${totalCost.toFixed(2)}</span>
         </li>
-        <li className="order-summary__list-item coupon">
-          <input type="text" name="coupon" id="" placeholder="Enter coupon code" />
-        </li>
         {
           cartTotal > 0 ?
-          <li className="order-summary__list-item checkout-action">
-            <button className="btn-regular">Credit Card <i className="fas fa-credit-card"></i></button>
-            <button className="btn-regular">Paypal <i className="fab fa-cc-paypal"></i></button>
-          </li> : null
+          <React.Fragment>
+            <li className="order-summary__list-item coupon">
+              <input type="text" name="coupon" id="" placeholder="Enter coupon code" />
+            </li>
+          
+            <li className="order-summary__list-item checkout-action">
+              <button className="btn-regular">Credit Card <i className="fas fa-credit-card"></i></button>
+              <button className="btn-regular">Paypal <i className="fab fa-cc-paypal"></i></button>
+            </li> 
+          </React.Fragment>: null
+          
         }
       </ul>
     </div>

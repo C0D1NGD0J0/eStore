@@ -8,7 +8,7 @@ const ProductTable = (props) => {
     return (
     <tr key={item.id}>
       <td>
-        <Link to="#!"><img className="cart-table__img" src={item.imgUrl} alt={item.name} /></Link>
+        <Link to="#!"><img className="cart-table__img" src={item.photos[0].url} alt={item.name} /></Link>
       </td>
       <td><a href="#!">{item.name}</a></td>
       <td>${item.price}</td>

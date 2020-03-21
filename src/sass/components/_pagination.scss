@@ -1,8 +1,42 @@
-.pagination {
-  width: 100%;
-  height: 4rem;
+.pagination-nav {
+  width: 70%;
   display: flex;
-  margin: 3rem 0 0 0;
+  padding: 2rem;
+  margin: 0 auto;
+  margin-top: 4rem;
   align-items: center;
   justify-content: center;
+
+  &__list {
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: inline-block;
+
+      .next,
+      .previous, .page {
+        padding: 1rem 1.8rem;
+        margin: .5rem;
+        border-radius: .5rem;
+        display: inline-block;
+        border: .1rem solid $dark-brown-color;
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: rgba($dark-brown-color, .7);
+        background-color: #fefefe;
+        box-shadow: .3rem .3rem .5rem rgba(0, 0, 0, 0.2), -.3rem -.3rem .5rem rgba(255, 255, 255, 1);
+        text-decoration: none;
+        transition: .3s ease-in-out;
+      }
+
+      & span:hover,
+      & span:focus,
+      &.active span {
+        color: $gold-color;
+        box-shadow: inset .3rem .3rem .5rem rgba(0, 0, 0, 0.2), inset -.3rem -.3rem .5rem rgba(255, 255, 255, 1);
+        transition: .3s ease-in-out;
+      }
+    }
+  }
 }

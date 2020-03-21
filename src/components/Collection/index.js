@@ -15,8 +15,8 @@ const Collection = (props) => {
   return (
     <div className="products-content__row">
       {
-        collection.map((item, idx) =>{
-          return <Card item={item} key={item.id}/>
+        collection && collection.map((item) =>{
+          return <Card item={item} key={item._id}/>
         })
       }
     </div>

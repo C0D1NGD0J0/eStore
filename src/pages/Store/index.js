@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import Sidebar from "./Sidebar/sidebar";
+import { connect } from "react-redux";
 import ContentWrapper from "../../components/Layouts/ContentWrapper";
 import StoreHeader from './StoreHeader';
 import ProductCollection from "../../components/Collection";
 import Pagination from '../../components/Pagination';
-import { static_data } from "../../data";
 import { getSubCategories } from "../../actions/category";
+import { getCategoryProducts } from "../../actions/product";
 
 class Store extends Component {
   constructor(props){
     super(props);
     this.state = {
-      PRODUCTS: static_data,
       categoryId: null,
       subCategories: [],
-      currentCategory: ""
+      currentCategory: "",
+      current_page: 1
     };
   }
 
@@ -23,8 +24,6 @@ class Store extends Component {
     const currentCategory = this.props.match.params.category;
 
     this.setState({ categoryId, currentCategory });
-
-    this.fetchCategoryData(categoryId);
   }
 
   componentDidUpdate(prevProp, prevState){
@@ -33,7 +32,8 @@ class Store extends Component {
 
     if ((prevState.categoryId !== 'null') && prevState.categoryId !== categoryId){
       this.setState({ categoryId, currentCategory});
-      return this.fetchCategoryData(categoryId);
+      this.fetchCategoryData(categoryId);
+      return this.fetchCategoryProducts(categoryId);
     };
   };
 
@@ -46,9 +46,21 @@ class Store extends Component {
     };
   };
 
-  render() {
-    const { PRODUCTS  } = this.state;
-    
+  fetchCategoryProducts = async (categoryId, page=1, limit=4) =>{
+    return this.props.getCategoryProducts(categoryId, page, limit)
+  };
+
+  handlePageClick = (page, action) => {
+    let current_page = page;
+    if(!current_page){
+      current_page= action === "next" ? this.state.current_page + 1 : this.state.current_page - 1
+    }
+    this.setState({current_page});
+    this.fetchCategoryProducts(this.state.categoryId, current_page);
+    this.fetchCategoryData(this.state.categoryId);
+  }
+
+  render() {    
     return (
       <ContentWrapper>
         <div className="row">
@@ -61,12 +73,12 @@ class Store extends Component {
           <div className="sm-9 col">
             <div className="products-content">
               <StoreHeader title={this.state.currentCategory}/>
+              <ProductCollection collection={this.props.products.all} />
               {
-                PRODUCTS.map(({products}, idx) =>{
-                  return <ProductCollection key={idx} collection={products}/>
-                })
+                this.props.products.pagination ?
+                  <Pagination pagination={this.props.products.pagination} handlePageClick={this.handlePageClick} current_page={this.state.current_page}/>
+                : null
               }
-              <Pagination />
             </div>
           </div>
         </div>
@@ -75,4 +87,8 @@ class Store extends Component {
   }
 }
 
-export default Store;
+const mapStateToProps = state =>({
+  products: state.products
+});
+
+export default connect(mapStateToProps, {getCategoryProducts})(Store);

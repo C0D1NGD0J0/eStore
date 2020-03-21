@@ -13,7 +13,7 @@ const Card = (props) => {
       <div className="product-card slow">
         <div className="product-card__top">
           <div className="product-card__img">
-            <img src={item.imgUrl} alt={item.name} />
+            <img src={item.photos[0].url} alt={item.photos[0].filename} />
           </div>
           <div className="product-card__overlay">
             <button><Link to={`/products/${item.id}`}><i className="fa fa-eye"></i></Link></button>
