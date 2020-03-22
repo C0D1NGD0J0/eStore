@@ -5,7 +5,7 @@ const Pagination = ({ pagination, current_page, handlePageClick}) => {
 
   for(let i=1; i<=pagination.total_pages; i++){
     pages.push(
-    <li className={`${i === current_page? 'active': ''} page`} onClick={()=> handlePageClick(i)}>
+    <li className={`${i === current_page? 'active': ''} page`} onClick={()=> handlePageClick(i)} key={i}>
       <span className="page">{i}</span>
     </li>);
   };
@@ -16,7 +16,7 @@ const Pagination = ({ pagination, current_page, handlePageClick}) => {
         {
           current_page > 1 ? 
           <li className="prev" onClick={() => handlePageClick(null, 'previous')}>
-            <span class="previous">
+            <span className="previous">
               <span aria-hidden="true">&laquo;</span>
             </span>
           </li>
@@ -28,7 +28,7 @@ const Pagination = ({ pagination, current_page, handlePageClick}) => {
         {
           (current_page < pagination.current_page || current_page === pagination.current_page && pagination.hasMoreResource) ? 
           <li className="next" onClick={() => handlePageClick(null, 'next')}>
-            <span class="next">
+            <span className="next">
               <span aria-hidden="true">&raquo;</span>
             </span>
           </li> : ''

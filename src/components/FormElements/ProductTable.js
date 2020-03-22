@@ -6,7 +6,7 @@ const ProductTable = (props) => {
 
   let tr = collection && collection.map((item) =>{
     return (
-    <tr key={item.id}>
+    <tr key={item._id}>
       <td>
         <Link to="#!"><img className="cart-table__img" src={item.photos[0].url} alt={item.name} /></Link>
       </td>
@@ -15,11 +15,11 @@ const ProductTable = (props) => {
       <td>
         <div className="cart-table p-qty">
           <span onClick={() => reduceQty(item)} className="fa fa-arrow-down"></span>
-          <span className="p-qty">{item.quantity}</span>
+          <span className="p-qty">{item.qty}</span>
           <span onClick={() => increaseQty(item)} className="fa fa-arrow-up"></span>
         </div>
       </td>
-      <td>{`$${item.quantity * item.price}`}</td>
+      <td>{`$${item.qty * item.price}`}</td>
         <td><span onClick={() => clearItems(item)}><i className="fa fa-trash"></i></span></td>
     </tr>);
   });

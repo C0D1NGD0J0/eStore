@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SHIPPING_COST = 24.99;
+const SHIPPING_COST = 40.00;
 const TAX_RATES = {
   gst: 6,
   hst: 7
@@ -18,7 +18,7 @@ const calculateTaxes = (amount = 0, taxes) =>{
       return amount + this.gst + this.hst;
     },
     getCostWithPST: function () {
-      return amount + pstRate
+      return amount * (pstRate/100)
     }
   };
 };
@@ -29,7 +29,7 @@ const calculateShipping = (amount = 0, shippingCost) =>{
 
 const OrderSummary = (props) => {
   const { cartTotal } = props;
-  const estimatedTax = calculateTaxes(cartTotal, TAX_RATES).gst;
+  const estimatedTax = calculateTaxes(cartTotal, TAX_RATES).getCostWithPST();
   const totalCost = cartTotal + estimatedTax + (cartTotal > 0 ? SHIPPING_COST : 0);
 
   return (

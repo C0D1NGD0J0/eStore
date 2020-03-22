@@ -1,27 +1,28 @@
 export const updateCartItemsCount = (items, newItem) =>{
-  const ismatch = items.find((product) => product.id === newItem.id);
+  const ismatch = items.find((product) => product._id === newItem._id);
 
+  console.log(newItem, ismatch);
   if(ismatch){
     return items.map((product) =>{
-      return product.id === newItem.id ? {
-        ...product, quantity: product.quantity + 1
+      return product._id === newItem._id ? {
+        ...product, qty: product.qty + 1
       } : product
     });
   };
 
-  return [...items, {...newItem, quantity: 1}]
+  return [...items, {...newItem, qty: 1}]
 };
 
 export const removeItemFromCart = (cart, item) => {
-  const ismatchItem = cart.find(product => product.id === item.id);
+  const ismatchItem = cart.find(product => product._id === item._id);
 
-  if (ismatchItem.quantity === 1) {
-    return cart.filter((p) => p.id !== item.id);
+  if (ismatchItem.qty === 1) {
+    return cart.filter((p) => p._id !== item._id);
   };
 
   return cart.map((p) => {
-    if (p.id === item.id) {
-      return { ...p, quantity: p.quantity - 1 }
+    if (p._id === item._id) {
+      return { ...p, qty: p.qty - 1 }
     } else {
       return p;
     };

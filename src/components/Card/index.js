@@ -8,6 +8,10 @@ const Card = (props) => {
   const { item } = props;
   const dispatch = useDispatch();
 
+  if(!item){
+    return <h1>Loading...</h1>
+  };
+
   return (
     <ReactWOW animation="zoomIn">
       <div className="product-card slow">
