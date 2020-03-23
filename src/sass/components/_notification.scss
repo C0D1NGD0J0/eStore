@@ -19,4 +19,14 @@
     background-color: $danger-color;
     box-shadow: 0 .6rem .9rem .6rem rgba(0,0,0,0.4);
   }
+
+  span{
+    background-color: #fefefe;
+    color: $dark-brown-color2;
+    position: absolute;
+    cursor: pointer;
+    font-size: 3.5rem;
+    right: 0;
+    top: 0;
+  }
 }

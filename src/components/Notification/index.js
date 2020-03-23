@@ -1,6 +1,7 @@
 import React from 'react';
 import { removeNotification } from "../../actions/notification";
 import { connect } from "react-redux";
+import ReactWOW from 'react-wow';
 
 const Notification = ({notification, removeNotification}) => {
   if (notification.length <= 0){
@@ -10,11 +11,14 @@ const Notification = ({notification, removeNotification}) => {
   return (
     notification.map((alert) =>{
       return (
-        <div className={`notification-wrapper ${alert.alertType}`} key={alert.id}>
-          <div onClick={() => removeNotification(alert.id)}>
-            <p key={alert.id}>{alert.msg}</p>
+        <ReactWOW animation="fadeInDown" key={alert.id}>
+          <div className={`notification-wrapper ${alert.alertType}`}>
+            <div>
+              <span className="notification-close" onClick={() => removeNotification(alert.id)}>&times;</span>
+              <p key={alert.id}>{alert.msg}</p>
+            </div>
           </div>
-        </div>
+        </ReactWOW>
       );
     })
   );

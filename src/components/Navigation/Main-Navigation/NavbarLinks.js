@@ -40,9 +40,9 @@ const NavbarLinks = ({ auth: { isAuthenticated }, userLogout, cartItemCount }) =
         {
           isAuthenticated ? 
             <li className="nav-list__item">
-              <a href="#!" className="nav-list__link" onClick={userLogout}>
+              <span className="nav-list__link" onClick={userLogout}>
                 <i className="fas fa-sign-out-alt"></i> Logout
-              </a>
+              </span>
             </li> : null
         }
       </ul>
