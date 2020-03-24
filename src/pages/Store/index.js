@@ -31,9 +31,9 @@ class Store extends Component {
     const currentCategory = this.props.match.params.category;
 
     if ((prevState.categoryId !== 'null') && prevState.categoryId !== categoryId){
-      this.setState({ categoryId, currentCategory});
       this.fetchCategoryData(categoryId);
-      return this.fetchCategoryProducts(categoryId);
+      this.fetchCategoryProducts(categoryId);
+      return this.setState({ categoryId, currentCategory});
     };
   };
 
@@ -46,8 +46,8 @@ class Store extends Component {
     };
   };
 
-  fetchCategoryProducts = async (categoryId, page=1, limit=4) =>{
-    return this.props.getCategoryProducts(categoryId, page, limit)
+  fetchCategoryProducts = async (categoryId, page=1) =>{
+    return this.props.getCategoryProducts(categoryId, page)
   };
 
   handlePageClick = (page, action) => {

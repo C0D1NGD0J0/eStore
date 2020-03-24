@@ -1,7 +1,5 @@
 export const updateCartItemsCount = (items, newItem) =>{
   const ismatch = items.find((product) => product._id === newItem._id);
-
-  console.log(newItem, ismatch);
   if(ismatch){
     return items.map((product) =>{
       return product._id === newItem._id ? {

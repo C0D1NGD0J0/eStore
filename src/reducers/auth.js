@@ -30,7 +30,6 @@ const authReducer = (state = initialState, action) =>{
       };
     case ACCOUNT_CONFIRMATION_SUCCESS:
     case LOGIN_SUCCESS:
-      console.log("========login success", payload)
       localStorage.setItem('token', payload);
       return{
         ...state,

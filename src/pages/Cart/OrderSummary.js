@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 const SHIPPING_COST = 40.00;
 const TAX_RATES = {
@@ -54,17 +55,26 @@ const OrderSummary = (props) => {
         </li>
         {
           cartTotal > 0 ?
-          <React.Fragment>
             <li className="order-summary__list-item coupon">
               <input type="text" name="coupon" id="" placeholder="Enter coupon code" />
-            </li>
-          
+            </li> : null
+        }
+        {
+          props.displayBtn && cartTotal > 0 ?
             <li className="order-summary__list-item checkout-action">
-              <button className="btn-regular">Credit Card <i className="fas fa-credit-card"></i></button>
-              <button className="btn-regular">Paypal <i className="fab fa-cc-paypal"></i></button>
-            </li> 
-          </React.Fragment>: null
-          
+              <Link to={{
+                pathname: "/checkout",
+                state: {
+                  orderTotal: {
+                    subtotal: cartTotal.toFixed(2),
+                    tax: estimatedTax.toFixed(2),
+                    shipping: SHIPPING_COST,
+                    total: totalCost.toFixed(2)
+                  }
+                }
+              }} className="btn-regular btn-lg">Pay Now</Link>
+            </li>
+          : null
         }
       </ul>
     </div>

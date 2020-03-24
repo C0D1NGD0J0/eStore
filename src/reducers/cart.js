@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, REMOVE_ITEM_FROM_CART } from "../actions/types";
+import { ADD_TO_CART, REMOVE_FROM_CART, REMOVE_ITEM_FROM_CART, EMPTY_CART } from "../actions/types";
 import { updateCartItemsCount, removeItemFromCart } from "../utils/cartUtil";
 
 const initialState = {
@@ -22,6 +22,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         items: removeItemFromCart(state.items, payload)
+      };
+    case EMPTY_CART:
+      return {
+        ...state,
+        items: []
       }
     default:
       return state;

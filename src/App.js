@@ -27,6 +27,7 @@ import { getCurrentuser } from "./actions/auth";
 import { setAuthHeaderToken, validateTokenState } from "./config/";
 import PrivateRoute from "./config/PrivateRoute";
 import './sass/main.scss';
+import Checkout from './pages/Checkout';
 
 function App() {
   const [pageLoaded, setPageLoaded] = useState(false);
@@ -65,6 +66,7 @@ function App() {
                 <Route exact path="/auth/recoverpassword" component={RecoverPassword} />
                 <Route exact path="/auth/reset_password/:token" component={ResetPassword} />
                 <Route exact path="/auth/account_activation/:token" component={AccountActivation} />
+                <PrivateRoute exact path="/checkout" component={Checkout} />
                 <PrivateRoute exact path="/myaccount" component={UserAccount} />
                 <PrivateRoute exact path="/myaccount/settings" component={UserAccountSetting} />
                 <PrivateRoute exact path="/myaccount/wishlist" component={UserWishList} />

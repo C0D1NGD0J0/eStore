@@ -43,7 +43,7 @@ const Cart = (props) => {
 
         <div className="sm-3 md-3 col">
           <div className="cart-sidebar animated fadeInRight">
-            <OrderSummary cartTotal={cartTotal}/>
+            <OrderSummary cartTotal={cartTotal} displayBtn={true}/>
           </div>
         </div>
       </div>
