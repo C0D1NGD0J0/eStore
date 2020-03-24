@@ -1,9 +1,10 @@
-import { REGISTRATION_SUCCESS, REGISTRATION_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, ACCOUNT_CONFIRMATION_SUCCESS, ACCOUNT_CONFIRMATION_FAIL, SET_CURRENTUSER, SET_AUTH_ERROR, LOGOUT, UPDATE_ACCOUNT_SUCCESS } from "../actions/types";
+import { REGISTRATION_SUCCESS, REGISTRATION_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, ACCOUNT_CONFIRMATION_SUCCESS, ACCOUNT_CONFIRMATION_FAIL, SET_CURRENTUSER, SET_AUTH_ERROR, LOGOUT, UPDATE_ACCOUNT_SUCCESS, ADD_TO_WISHLIST, REMOVE_FROM_WISHLIST } from "../actions/types";
 
 const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: null,
   currentuser: null,
+  tempWishlist: [],
   loading: true
 };
 
@@ -30,7 +31,6 @@ const authReducer = (state = initialState, action) =>{
       };
     case ACCOUNT_CONFIRMATION_SUCCESS:
     case LOGIN_SUCCESS:
-      console.log("========login success", payload)
       localStorage.setItem('token', payload);
       return{
         ...state,
@@ -45,6 +45,22 @@ const authReducer = (state = initialState, action) =>{
         loading: false,
         currentuser: {...payload},
         isAuthenticated: true,
+      };
+    case ADD_TO_WISHLIST:
+      return {
+        ...state,
+        currentuser: {
+          ...state.currentuser,
+          wishlist: [...state.currentuser.wishlist, payload]
+        }
+      };
+    case REMOVE_FROM_WISHLIST:
+      return {
+        ...state,
+        currentuser: {
+          ...state.currentuser,
+          wishlist: [...state.currentuser.wishlist.filter((item) => (item._id !== payload._id))]
+        }
       };
     default:
       return state;

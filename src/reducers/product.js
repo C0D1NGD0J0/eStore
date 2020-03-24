@@ -2,7 +2,6 @@ import { GET_CATEGORY_PRODUCTS } from "../actions/types";
 
 const initialState = {
   all: [],
-  wishlist: [],
   active: null,
   loading: true,
   pagination: null

@@ -59,7 +59,6 @@ export const userLogin = (userdata, cb) => async dispatch =>{
 
 export const userLogout = () => dispatch =>{
   dispatch({type: LOGOUT});
-  //return dispatch((createNotification("Logout successful", "warning")));
 };
 
 export const getCurrentuser = (callback) => async dispatch =>{

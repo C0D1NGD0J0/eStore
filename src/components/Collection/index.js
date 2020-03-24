@@ -8,9 +8,11 @@ const Collection = (props) => {
 
   if(collection.length <= 0){
     return (
-    <div className="page-title">
-      <h2>Currently empty.</h2>
-    </div>)
+    //<div className="page-title">
+    //  <h2>Currently empty.</h2>
+    //</div>
+      null
+    )
   }
   return (
     <div className="products-content__row">
