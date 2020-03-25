@@ -14,7 +14,8 @@ export const processPayment = async (orderInfo, cb) =>{
   try {
     const res = await axios.post(`${REACT_APP_API_URL}/payments/`, orderInfo);
     if(res.data.success){
-      return cb();
+      const braintreeResponse = res.data.result.transaction;
+      return cb(braintreeResponse);
     };
   } catch (error) { 
     console.log("Payment: ", error);
