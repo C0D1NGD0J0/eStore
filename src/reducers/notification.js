@@ -6,7 +6,7 @@ export default function (state = initialState, action){
   const { type, payload } = action;
   switch (type) {
     case CREATE_NOTIFICATION:
-      return [...state, payload];
+      return [payload];
     case DELETE_NOTIFICATION:
       return state.filter((alert) => alert.id !== payload);
     default:

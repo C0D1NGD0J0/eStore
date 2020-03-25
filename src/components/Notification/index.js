@@ -29,3 +29,4 @@ const mapStateToProps = (state) =>({
 });
 
 export default connect(mapStateToProps, {removeNotification})(Notification);
+//setTimeout(() => dispatch({ type: REMOVE_ALERT, payload: id }), 5000);

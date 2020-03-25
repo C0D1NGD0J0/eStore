@@ -7,6 +7,7 @@ export const createNotification = (msg, alertType) => dispatch =>{
     type: CREATE_NOTIFICATION, 
     payload: {msg, alertType, id}
   });
+  setTimeout(() => dispatch({ type: DELETE_NOTIFICATION, payload: id }), 5000);
 };
 
 export const removeNotification = (id) => dispatch =>{
