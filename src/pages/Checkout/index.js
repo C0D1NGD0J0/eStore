@@ -112,6 +112,12 @@ const Checkout = (props) => {
           </div>
 
           <button onClick={purchase} className="btn-regular btn-lg">Checkout</button>
+          <br/>
+          <div className="page-title">
+            <h3 className="text-danger">Credit Card number: 4111 1111 1111 1111</h3>
+            <h4 className="text-danger">11/22 (EXP Date)</h4>
+            <p>Please DO NOT PROVIDE AN ACTUAL C.C </p>
+          </div>
         </div>
       );
     };
