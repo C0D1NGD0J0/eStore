@@ -9,7 +9,7 @@ const initialState = {};
 const middlewares = [thunk];
 
 if(process.env.NODE_ENV !== 'production'){
-  middlewares.push(logger);
+  //middlewares.push(logger);
 };
 
 export const store = createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(...middlewares)));

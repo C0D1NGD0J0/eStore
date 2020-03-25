@@ -1,4 +1,4 @@
-import { GET_CATEGORY_PRODUCTS } from "../actions/types";
+import { GET_CATEGORY_PRODUCTS, GET_PRODUCT } from "../actions/types";
 
 const initialState = {
   all: [],
@@ -16,7 +16,13 @@ export default function (state = initialState, action) {
         loading: false,
         all: [...payload.products],
         pagination: payload.pagination
-      }
+      };
+    case GET_PRODUCT:
+      return {
+        ...state,
+        loading: false,
+        active: payload
+      };
     default:
       return state;
   };

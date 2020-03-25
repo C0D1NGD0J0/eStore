@@ -22,7 +22,10 @@ const Card = (props) => {
             <img src={item.photos[0].url} alt={item.photos[0].filename} />
           </div>
           <div className="product-card__overlay">
-            <button><Link to={`/products/${item.id}`}><i className="fa fa-eye"></i></Link></button>
+            <button><Link to={{
+              pathname: `/products/${item.slug}`,
+              state: {productId: item._id}
+            }}><i className="fa fa-eye"></i></Link></button>
             {
               isAuthenticated && 
               <button 
