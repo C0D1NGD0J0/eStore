@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { userLogout } from "../../../actions/auth";
 import { selectCartItemsCount } from "../../../selectors/cartSelector";
 
-const NavbarLinks = ({ auth: { isAuthenticated }, userLogout, cartItemCount }) => {
+const NavbarLinks = ({ auth: { isAuthenticated, currentuser }, userLogout, cartItemCount }) => {
   
   return (
     <div className="header-navbar">
@@ -34,7 +34,7 @@ const NavbarLinks = ({ auth: { isAuthenticated }, userLogout, cartItemCount }) =
         </li>
         <li className="nav-list__item">
           <Link to="/wishlist" className="nav-list__link">
-            <i className="fas fa-heart"></i> Wishlist
+            <i className={`fas fa-heart ${currentuser && currentuser.wishlist.length > 0 ? 'isactive' : null}`}></i> Wishlist
           </Link>
         </li>
         {

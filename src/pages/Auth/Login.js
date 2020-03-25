@@ -32,7 +32,7 @@ const Login = (props) => {
           const { originPath } = location.state;
           return props.history.replace(originPath);
         };
-        props.history.push("/");
+        props.history.push("/myaccount");
       });
     };
   };
