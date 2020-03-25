@@ -69,8 +69,9 @@ const Checkout = (props) => {
         const orderData = {
           items: cartItems,
           transactionId: btResponse.id,
-          total: btResponse.amount,
-          address: state.address
+          purchaseTotal: btResponse.amount,
+          address: state.address,
+          costBreakdown: orderTotal
         };
 
         _dispatch(createNotification("Payment was successful", "success"));
@@ -79,6 +80,9 @@ const Checkout = (props) => {
         //Clear cart and link state
         _dispatch(emptyCart());
         props.history.replace({ pathname: props.location.pathname, state: null });
+
+        //redirect user to account page
+        props.history.push("/myaccount");
       });
     } catch (error) {
       console.log(error);
