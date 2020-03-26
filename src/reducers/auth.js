@@ -4,7 +4,6 @@ const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: null,
   currentuser: null,
-  tempWishlist: [],
   loading: true
 };
 
