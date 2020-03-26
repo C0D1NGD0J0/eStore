@@ -8,10 +8,9 @@ const Collection = (props) => {
 
   if(collection.length <= 0){
     return (
-    //<div className="page-title">
-    //  <h2>Currently empty.</h2>
-    //</div>
-      null
+    <div className="page-title">
+      <h2>Currently empty.</h2>
+    </div>
     )
   }
   return (
