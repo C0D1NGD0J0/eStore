@@ -50,7 +50,8 @@ export const userLogin = (userdata, cb) => async dispatch =>{
     dispatch(getCurrentuser());
     return cb();
   } catch (err) {
-    const error = err.response.data.error;
+    const error = err.message;
+    console.log(err);
     dispatch({ type: LOGIN_FAIL });
 
     return dispatch((createNotification(error, "danger")));
@@ -62,8 +63,8 @@ export const userLogout = () => dispatch =>{
 };
 
 export const getCurrentuser = (callback) => async dispatch =>{
-  if(localStorage.token){
-    setAuthHeaderToken(localStorage.token);
+  if(localStorage.getItem('token')){
+    setAuthHeaderToken(localStorage.getItem('token'));
   };
 
   try {
@@ -72,7 +73,7 @@ export const getCurrentuser = (callback) => async dispatch =>{
   } catch (err) {
     const error = err.response.data.error;
     console.log(error);
-    return dispatch({ type: SET_AUTH_ERROR });
+    dispatch({ type: SET_AUTH_ERROR });
   };
 
   if (callback) {

@@ -6,15 +6,14 @@ import ContentWrapper from "../../components/Layouts/ContentWrapper";
 
 const UserDashboard = (props) => {
   const [orders, setOrders] = useState([]);
-  const purchaseHistory = useSelector((state) => state.auth.currentuser.purchaseHistory);
-
+  const currentUser = useSelector((state) => state.auth.currentuser);
+  
   useEffect(() =>{
-    setOrders([...purchaseHistory]);
-  }, [purchaseHistory]);
-
-  if(!purchaseHistory){
-    return null
-  };
+    if(currentUser){
+      const purchaseHistory = currentUser.purchaseHistory;
+      setOrders([...purchaseHistory]);
+    }
+  }, [currentUser]);
 
   return (
     <ContentWrapper>

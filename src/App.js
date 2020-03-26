@@ -34,14 +34,13 @@ function App() {
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      store.dispatch(getCurrentuser(()=> setPageLoaded(!pageLoaded)));
+      store.dispatch(getCurrentuser(()=> setPageLoaded(true)));
     } else {
-      setPageLoaded(!pageLoaded);
+      setPageLoaded(true);
     };
     validateTokenState(store);
     setAuthHeaderToken(localStorage.getItem('token'));
   }, []);
-
 
   if(!pageLoaded){
     return <div>loading ...</div>
