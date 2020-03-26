@@ -48,6 +48,7 @@ const Auth = (props) => {
           <div className="auth-page">
             {state.isLogin && <Login show={state.isLogin} history={props.history} />}
             {state.isRegister && <Register show={state.isRegister} />}
+            <h3>Test Account: admin@hoa.com (password12)</h3>
           </div>
         </div>
       </div>
