@@ -6,7 +6,11 @@ import WishlistCollection from "../../../components/Collection";
 import PageHeader from "../../../pages/Store/StoreHeader";
 
 const UserWishList = (props) => {
-  const { currentuser } = useSelector(state => state.auth);
+  const currentuser = useSelector(state => state.auth.currentuser);
+
+  if(!currentuser){
+    return null;
+  };
 
   return (
     <ContentWrapper>

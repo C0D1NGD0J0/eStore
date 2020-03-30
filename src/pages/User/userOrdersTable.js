@@ -19,9 +19,9 @@ const statusBgStyle = (status) =>{
 };
 
 const userOrdersTable = ({orders}) => {
-  const _tr = orders && orders.map((item) =>{
+  const _tr = orders && orders.map((item, idx) =>{
     return (
-      <tr key={item._id}>
+      <tr key={idx}>
         <td>{item._id}</td>
         <td><Moment format="DD/MM/YYYY">{item.createdAt}</Moment></td>
         <td>${item.totalAmount}</td>

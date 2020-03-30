@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const Collection = (props) => {
   const { collection } = props;
+  
   if (!collection) return null;
 
   if(collection.length <= 0){

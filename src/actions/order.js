@@ -17,3 +17,12 @@ export const getOrderDetails = async (orderid) =>{
     console.log("Order Error: ", err.response);
   };
 };
+
+export const getUserOrders = async () => {
+  try {
+    const res = await axios.get(`${REACT_APP_API_URL}/orders/`);
+    return res.data.orders;
+  } catch (error) {
+    console.log("User Orders Error: ", error.response);
+  };
+};

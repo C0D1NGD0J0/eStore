@@ -3,17 +3,20 @@ import { useSelector, useDispatch } from "react-redux";
 import UserOrdersTable from './userOrdersTable';
 import UserSidebarOptions from './userSidebarOptions';
 import ContentWrapper from "../../components/Layouts/ContentWrapper";
+import { getUserOrders } from "../../actions/order";
 
 const UserDashboard = (props) => {
   const [orders, setOrders] = useState([]);
   const currentUser = useSelector((state) => state.auth.currentuser);
   
   useEffect(() =>{
-    if(currentUser){
-      const purchaseHistory = currentUser.purchaseHistory;
-      setOrders([...purchaseHistory]);
-    }
-  }, [currentUser]);
+    async function fetchOrders(){
+      const res = await getUserOrders();
+      setOrders([...res]);
+    };
+
+    fetchOrders();
+  }, []);
 
   return (
     <ContentWrapper>

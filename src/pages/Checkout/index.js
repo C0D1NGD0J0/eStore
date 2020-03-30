@@ -5,6 +5,7 @@ import ContentWrapper from "../../components/Layouts/ContentWrapper";
 import { getClientPaymentToken, processPayment } from "../../actions/checkout";
 import { createOrder } from "../../actions/order";
 import { emptyCart } from "../../actions/cart";
+import Geocode from "react-geocode";
 import DropIn from "braintree-web-drop-in-react";
 import { selectCartItemsTotal, selectCartItems } from "../../selectors/cartSelector";
 import { createNotification } from "../../actions/notification";
@@ -22,6 +23,13 @@ const reducer = (state, action) =>{
       return {
         ...state,
         ...payload
+      };
+    case 'SET_ERROR':
+      return {
+        ...state, 
+        errors: {
+          msg: payload
+        }
       }
     default:
       return state;
@@ -33,7 +41,9 @@ const Checkout = (props) => {
   const [state, dispatch] = useReducer(reducer, {
     clientToken: "",
     instance: {},
-    address: ""
+    address: "",
+    note: "",
+    errors: null
   });
   const cartTotal = useSelector((state) => selectCartItemsTotal(state));
   const cartItems = useSelector((state) => selectCartItems(state));
@@ -46,6 +56,7 @@ const Checkout = (props) => {
     async function fetchClientToken(){
       try {
         const res = await getClientPaymentToken();
+        Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
 
         return dispatch({
           type: "SET_TOKEN",
@@ -89,17 +100,31 @@ const Checkout = (props) => {
     };
   };
 
-  const handleChange = (evt) =>{
+  const handleChange = async (evt) =>{
     const {value, name} = evt.target;
-
+    
     dispatch({
       type: "SET_ADDRESS",
       payload: {[name]: value}
     });
   };
 
+  const fetchAddress = async (address) => {
+    const res = await Geocode.fromAddress(address);
+    dispatch({
+      type: "SET_ADDRESS",
+      payload: { address: res.results[0].formatted_address }
+    });
+  };
+
+  const handleBlur = async () => {
+    if(state.address){
+      await fetchAddress(state.address)
+    };
+  }
+
   const mystyle = {
-    width: "70%",
+    width: "100%",
     margin: "2rem 0",
     fontSize: "1.6rem",
     padding: "2rem",
@@ -112,10 +137,14 @@ const Checkout = (props) => {
         <div>
           <DropIn options={{authorization: token}} onInstance={instance => (state.instance = instance)}/>
           <div className="form">
-            <textarea name="address" value={state.address} onChange={handleChange} placeholder="Enter delivery address..." style={mystyle} rows="3"/>
-          </div>
+            <input type="text" name="address" value={state.address} onChange={handleChange} placeholder="Enter delivery address..." style={mystyle} onBlur={handleBlur} />
 
-          <button onClick={purchase} className="btn-regular btn-lg">Checkout</button>
+            <textarea name="note" value={state.note} onChange={handleChange} rows="5" style={mystyle} placeholder="Delivery note" />
+          </div>
+          {
+            state.address && state.errors === null ? 
+            <button onClick={purchase} className="btn-regular btn-lg">Checkout</button> : null 
+          }
           <br/>
           <div className="page-title">
             <h3 className="text-danger">Credit Card number: 4111 1111 1111 1111</h3>
