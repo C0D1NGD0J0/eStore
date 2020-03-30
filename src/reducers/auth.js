@@ -26,6 +26,7 @@ const authReducer = (state = initialState, action) =>{
         ...state,
         token: null,
         loading: false,
+        currentuser: null,
         isAuthenticated: false,
       };
     case ACCOUNT_CONFIRMATION_SUCCESS:

@@ -1,12 +1,11 @@
 import axios from "axios";
 import { createNotification } from './notification';
 import { ADD_TO_WISHLIST, REMOVE_FROM_WISHLIST } from "./types";
-
 const { REACT_APP_API_URL } = process.env;
 
 export const addToWishlist = (product) => async dispatch => {
   try {
-    const res = await axios.put(REACT_APP_API_URL + `/products/${product._id}/add_to_wishlist`);
+    await axios.put(REACT_APP_API_URL + `/products/${product._id}/add_to_wishlist`);
     dispatch({ type: ADD_TO_WISHLIST, payload: product });
     return dispatch(createNotification("Product added to wishlist", "success"));
   } catch (err) {
@@ -17,7 +16,7 @@ export const addToWishlist = (product) => async dispatch => {
 
 export const removeFromWishlist = (product) => async dispatch => {
   try {
-    const res = await axios.put(REACT_APP_API_URL + `/products/${product._id}/remove_wishlist_item`);
+    await axios.put(REACT_APP_API_URL + `/products/${product._id}/remove_wishlist_item`);
     dispatch({ type: REMOVE_FROM_WISHLIST, payload: product });
     return dispatch(createNotification("Product has been removed from wishlist", "warning"));
   } catch (err) {
