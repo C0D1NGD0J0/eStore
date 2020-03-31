@@ -21,7 +21,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: false,
-        active: payload
+        active: {product: payload.product, reviews: payload.reviews}
       };
     default:
       return state;
