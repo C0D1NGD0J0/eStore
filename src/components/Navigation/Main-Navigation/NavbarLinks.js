@@ -17,7 +17,7 @@ const NavbarLinks = ({ auth: { isAuthenticated, currentuser }, userLogout, cartI
         {
           !isAuthenticated ? 
             <li className="nav-list__item">
-              <Link to="/auth" className="nav-list__link">
+              <Link to="/login" className="nav-list__link">
                 <i className="fas fa-user"></i> Register/Login
               </Link>
             </li> :

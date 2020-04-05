@@ -28,7 +28,7 @@ const SidebarMenuLinks = ({ auth: { isAuthenticated }, userLogout, cartItemCount
             </li>
           </Fragment> : (
             <li className="navbar__list-item">
-              <Link to="/auth" className="navbar__list-item__link">Register/Login</Link>
+              <Link to="/signup" className="navbar__list-item__link">Register/Login</Link>
             </li>
           )
       }

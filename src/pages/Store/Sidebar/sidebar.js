@@ -7,7 +7,9 @@ const StoreSidebar = (props) => {
   
   return (
     <div className="sidebar-widget">
-      <SubCategoryOptions subCategories={props.subCategories} /> 
+      {
+        props.subCategories ? <SubCategoryOptions subCategories={props.subCategories} /> : null
+      }
 
       <div className="sidebar-widget__box">
         <h5>Price</h5>

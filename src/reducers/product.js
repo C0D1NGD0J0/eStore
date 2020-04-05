@@ -1,4 +1,4 @@
-import { GET_CATEGORY_PRODUCTS, GET_PRODUCT } from "../actions/types";
+import { GET_CATEGORY_PRODUCTS, GET_PRODUCT, GET_PRODUCTS, SEARCH_SUCCESS } from "../actions/types";
 
 const initialState = {
   all: [],
@@ -11,6 +11,8 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case GET_CATEGORY_PRODUCTS:
+    case SEARCH_SUCCESS:
+    case GET_PRODUCTS:
       return {
         ...state,
         loading: false,
@@ -21,7 +23,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: false,
-        active: {product: payload.product, reviews: payload.reviews}
+        active: { product: payload.product, reviews: payload.reviews }
       };
     default:
       return state;

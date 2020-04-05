@@ -57,11 +57,12 @@ function App() {
               <Notification />
               <Switch>
                 <Route exact path="/" component={LandingPage} />
-                <Route exact path="/store/cat/:category" component={Store} />
+                <Route exact path={["/store/cat/:category", "/store/cat"]} component={Store} />
                 <Route exact path="/products/:productId" component={SingleProduct} />
                 <Route exact path="/wishlist" component={WishList} />
                 <Route exact path="/cart" component={Cart} />
-                <Route exact path="/auth" component={Auth} />
+                <Route exact path={["/login", "/signup", "/register"]} component={Auth} />
+                {/*<Route path="/search" component={Store} />*/}
                 <Route exact path="/auth/recoverpassword" component={RecoverPassword} />
                 <Route exact path="/auth/reset_password/:token" component={ResetPassword} />
                 <Route exact path="/auth/account_activation/:token" component={AccountActivation} />

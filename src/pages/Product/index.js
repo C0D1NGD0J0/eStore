@@ -5,6 +5,7 @@ import Collection from "../../components/Collection/";
 import ContentWrapper from "../../components/Layouts/ContentWrapper";
 import { addToCart } from "../../actions/cart";
 import Moment from "react-moment";
+import { addToWishlist, removeFromWishlist } from '../../actions/user';
 
 const Product = (props) => {
   const dispatch = useDispatch();
@@ -72,24 +73,29 @@ const Product = (props) => {
                     <span><i className="fa fa-star"></i></span>
                   </div>
                   <h2 className="title">{product.name}</h2>
-                  <p className="subtitle">Currently product {product.inStock > 0 ? 'is in' : 'out of'} stock.</p>
+                  <p className="subtitle text-primary"> {product.inStock > 0 ? 'In' : 'out of'} stock.</p>
                   <p className="description">{product.description}</p><hr/>
                   <h3 className="price">${product.price.toFixed(2)}</h3>
 
                   <div className="actions">
                     <button onClick={() => dispatch(addToCart(product))} className="btn btn-lg btn-regular">Add to Cart</button>
-                    <button className="btn btn-circle"><i className="fa fa-heart"></i></button>
-                  </div>
-                </div>
 
-                <div className="reviews-box">
-                  <div className="page-title">
-                    <h3>Reviews <span>(0)</span></h3> <hr />
+                    <button className="btn btn-circle" onClick={() => dispatch(addToWishlist(product))}>
+                      <i className="fa fa-heart"></i>
+                    </button>
                   </div>
-                  <ul className="review-list">
-                    {_reviewLi}
-                  </ul>
                 </div>
+                {
+                  reviews.length ?
+                  <div className="reviews-box">
+                    <div className="page-title">
+                      <h3>Reviews <span>(0)</span></h3> <hr />
+                    </div>
+                    <ul className="review-list">
+                      {_reviewLi}
+                    </ul>
+                  </div> : null
+                }
               </div>
             </div>
           </div>

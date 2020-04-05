@@ -11,7 +11,7 @@ const ErrorPage = (props) =>{
         <p>The page you’re looking for can’t be found. Go back to your previous page or use the search bar to try again.</p>
 
         <div className="actions">
-          <Link to="/store" className="btn-regular btn-lg">Go to Store</Link>
+          <Link to="/store/cat/" className="btn-regular btn-lg">Go to Store</Link>
         </div>
       </div>
     </div>
