@@ -3,19 +3,19 @@ import { createNotification } from './notification';
 import { GET_CATEGORY_PRODUCTS, GET_PRODUCT, GET_PRODUCTS, SEARCH_PRODUCTS, SEARCH_SUCCESS, SEARCH_FAIL } from "./types";
 const { REACT_APP_API_URL } = process.env;
 
-export const getAllProducts = (page) => async (dispatch) =>{
+export const getAllProducts = (page, sortOption) => async (dispatch) =>{
   try {
-    const res = await axios.get(`${REACT_APP_API_URL}/products?page=${page}`);
+    const res = await axios.get(`${REACT_APP_API_URL}/products?page=${page}&sortBy=${sortOption}`);
     return dispatch({ type: GET_PRODUCTS, payload: res.data });
   } catch (err) {
     console.log("Products Error: ", err.response.data.errors);
   };
 };
 
-export const getCategoryProducts = (catId, page) => async dispatch => {
+export const getCategoryProducts = (catId, page, sortOption="") => async dispatch => {
   if(catId){
     try {
-      const res = await axios.get(`${REACT_APP_API_URL}/products/categories/${catId}?page=${page}`);
+      const res = await axios.get(`${REACT_APP_API_URL}/products/categories/${catId}?page=${page}&sortBy=${sortOption}`);
       return dispatch({ type: GET_CATEGORY_PRODUCTS, payload: res.data });
     } catch (err) {
       console.log("Products Error: ", err.response.data.errors);

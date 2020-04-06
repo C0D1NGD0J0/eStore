@@ -11,7 +11,7 @@ const PrivateRoute = ({ currentuser, component: Component, createNotification, .
         return <Component {...props} />
       } else {
         createNotification("Please login to proceed!", "danger");
-        return <Redirect to={{ pathname: "/auth", state: { originPath: props.location.pathname } }} />
+        return <Redirect to={{ pathname: "/login", state: { originPath: props.location.pathname } }} />
       };
     }}/>
   );

@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 
 const NavbarSearch = (props) => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [state, setState] = useState({
     query: ""
   });
@@ -16,7 +17,11 @@ const NavbarSearch = (props) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log(history);
+    if(state.query){
+      dispatch(searchForProduct(state.query));
+      setState({query: ""});
+      return history.push("/store/cat");
+    };
   };
 
   return (

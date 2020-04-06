@@ -15,16 +15,17 @@ class Store extends Component {
       categoryId: null,
       subCategories: [],
       currentCategory: "",
-      current_page: 1
+      current_page: 1,
+      sortOption: ""
     };
   }
 
   componentDidMount(){
     const categoryId = this.props.history.location.state;
     const currentCategory = this.props.match.params.category;
-
-    if(!categoryId || !currentCategory){
-      this.fetchAllProducts();
+    
+    if(!categoryId){
+      return this.fetchAllProducts(1, this.state.sortOptions);
     };
 
     this.setState({ categoryId, currentCategory });
@@ -50,12 +51,12 @@ class Store extends Component {
     };
   };
 
-  fetchCategoryProducts = async (categoryId, page=1) =>{
-    return this.props.getCategoryProducts(categoryId, page);
+  fetchCategoryProducts = async (categoryId, page=1, sortOption) =>{
+    return this.props.getCategoryProducts(categoryId, page, sortOption);
   };
 
-  fetchAllProducts = async (page=1) =>{
-    return this.props.getAllProducts(page);
+  fetchAllProducts = async (page = 1, sortQuery) =>{
+    return this.props.getAllProducts(page, sortQuery);
   };
 
   handlePageClick = (page, action) => {
@@ -65,12 +66,23 @@ class Store extends Component {
     };
 
     this.setState({current_page});
+
     if(this.state.categoryId){
-      this.fetchCategoryProducts(this.state.categoryId, current_page);
-      this.fetchCategoryData(this.state.categoryId);
+      this.fetchCategoryProducts(this.state.categoryId, current_page, this.state.sortOption);
+      return this.fetchCategoryData(this.state.categoryId);
     };
-    this.fetchAllProducts(current_page);
+
+    this.fetchAllProducts(current_page, this.state.sortOption);
   }
+
+  handleSortOption = (sortQuery) =>{
+    this.setState({ sortOption: sortQuery, current_page: 1});
+    if(!this.state.categoryId){
+      return this.fetchAllProducts(1, sortQuery);
+    };
+
+    this.fetchCategoryProducts(this.state.categoryId, 1, sortQuery);
+  };
 
   render() {    
     return (
@@ -84,8 +96,10 @@ class Store extends Component {
 
           <div className="sm-9 col">
             <div className="products-content">
-              <StoreHeader title={this.state.currentCategory || "All Products"}/>
+              <StoreHeader title={this.state.currentCategory || "All Products"} handleSortOption={this.handleSortOption}/>
+              
               <ProductCollection collection={this.props.products.all} />
+              
               {
                 this.props.products.pagination ?
                   <Pagination pagination={this.props.products.pagination} handlePageClick={this.handlePageClick} current_page={this.state.current_page}/>
