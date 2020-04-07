@@ -27,7 +27,7 @@ const NavbarSearch = (props) => {
   return (
     <div className="header-search">
       <form className="search-form" onSubmit={handleSubmit}>
-        <input type="text" name="query" placeholder="Search Product" className="search-form__input" value={state.query} onChange={handleChange} />
+        <input type="text" name="query" placeholder="Search Product" className="search-form__input" value={state.query} onChange={handleChange} onBlur={handleSubmit}/>
         <button className="search-btn"><i className="fas fa-search"></i></button>
       </form>
     </div>
