@@ -28,6 +28,7 @@ import { setAuthHeaderToken, validateTokenState } from "./config/";
 import PrivateRoute from "./config/PrivateRoute";
 import './sass/main.scss';
 import Checkout from './pages/Checkout';
+import Spinner from './components/Spinner';
 
 function App() {
   const [pageLoaded, setPageLoaded] = useState(false);
@@ -43,7 +44,7 @@ function App() {
   }, []);
 
   if(!pageLoaded){
-    return <div>loading ...</div>
+    return <Spinner />
   }
 
   return (
