@@ -6,6 +6,7 @@ import ContentWrapper from "../../components/Layouts/ContentWrapper";
 import { addToCart } from "../../actions/cart";
 import Moment from "react-moment";
 import { addToWishlist, removeFromWishlist } from '../../actions/user';
+import Spinner from "../../components/Spinner/";
 
 const Product = (props) => {
   const dispatch = useDispatch();
@@ -31,8 +32,8 @@ const Product = (props) => {
     fetchData(productId, product);
   }, [productId, product && product._id]);
   
-  if(!product){
-    return <h1>Loading...</h1>
+  if(!product || product.loading){
+    return <Spinner />
   };
 
   const _reviewLi = reviews && reviews.map((review) =>{

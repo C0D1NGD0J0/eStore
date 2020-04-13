@@ -7,6 +7,7 @@ import ProductCollection from "../../components/Collection";
 import Pagination from '../../components/Pagination';
 import { getSubCategories } from "../../actions/category";
 import { getCategoryProducts, getAllProducts } from "../../actions/product";
+import Spinner from "../../components/Spinner/";
 
 class Store extends Component {
   constructor(props){
@@ -84,7 +85,11 @@ class Store extends Component {
     this.fetchCategoryProducts(this.state.categoryId, 1, sortQuery);
   };
 
-  render() {    
+  render() {  
+    if(this.props.products.loading){
+      return <Spinner />
+    };
+
     return (
       <ContentWrapper>
         <div className="row">
