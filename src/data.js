@@ -215,7 +215,7 @@ export const categories = [
 export const featured = () =>{
   let result = [];
   static_data.map((obj) =>{
-    result.push(obj.products);
+    return result.push(obj.products);
   });
 
   return result.reduce((a,b) => a.concat(b), []).slice(0,4);
